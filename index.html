@@ -217,10 +217,8 @@ welcome at <a href="https://github.com/xtreamui-pro/download">https://github.com
 </table>
 <p><strong>What the package does not hold</strong></p>
 <ul>
-<li>The public website (<code>cmd/web</code>: landing, legal pages, help centre). It is not part of releases. Build it from source with <code>make build-web</code> when you want it; <code>install.sh</code> then creates the <code>xtream-web</code> unit because the binary sits next to the others.</li>
 <li>The billing / shop connectors (WHMCS, WooCommerce, Odoo, …). They are published on their own at <a href="https://plugins.xtream-ui.pro">https://plugins.xtream-ui.pro</a> and can be downloaded from the dashboard (Connectors page).</li>
 </ul>
-<p>The binaries are statically linked and packed with <code>upx --ultra-brute</code>: <code>file</code> reports <code>ELF … statically linked</code>, <code>upx -l &lt;binary&gt;</code> shows the ratio, and the first start of each process takes a few hundred milliseconds longer. Long-running services are not affected.</p>
 <hr>
 <h2 id="1-get-the-package-onto-the-server">1. Get the package onto the server</h2>
 <p>Download <strong>directly on the server</strong> (uploading by hand often corrupts the file).
@@ -393,11 +391,6 @@ sudo systemctl start xtream-cluster-agent
 <td><code>--dashboard-domain HOST</code>, <code>--api-domain HOST</code>, <code>--media-domain HOST</code></td>
 <td>empty</td>
 <td>One name per service (with <code>--with-nginx</code>; any subset)</td>
-</tr>
-<tr>
-<td><code>--web-domain HOST</code></td>
-<td>empty</td>
-<td>Root domain of the public site (<code>cmd/web</code>, unit <code>xtream-web</code>, port 8081); nginx serves <code>HOST</code> and <code>www.HOST</code>. Needs a <code>web</code> binary next to the others (<code>make build-web</code>): release packages do not carry one, so leave this out when installing a release — the script stops with a message otherwise</td>
 </tr>
 <tr>
 <td><code>--playback-base-url URL</code></td>
@@ -608,7 +601,7 @@ sudo systemctl start xtream-cluster-agent
 <tbody>
 <tr>
 <td><code>/opt/xtream/bin/</code></td>
-<td><code>dashboard api worker seed serve recording</code> (main) or <code>serve cluster</code> (node); <code>web</code> only when the binary was next to the others</td>
+<td><code>dashboard api worker seed serve recording</code> (main) or <code>serve cluster</code> (node)</td>
 </tr>
 <tr>
 <td><code>/opt/xtream/packages/</code></td>
@@ -656,7 +649,7 @@ sudo systemctl start xtream-cluster-agent
 </tr>
 <tr>
 <td><code>/etc/systemd/system/xtream-*.service</code></td>
-<td><code>xtream-dashboard</code>, <code>xtream-api</code>, <code>xtream-worker</code>, <code>xtream-serve</code>, <code>xtream-recording</code> (main; <code>xtream-web</code> only with a web binary); <code>xtream-serve</code>, <code>xtream-cluster-agent</code> (node)</td>
+<td><code>xtream-dashboard</code>, <code>xtream-api</code>, <code>xtream-worker</code>, <code>xtream-serve</code>, <code>xtream-recording</code> (main); <code>xtream-serve</code>, <code>xtream-cluster-agent</code> (node)</td>
 </tr>
 <tr>
 <td><code>/etc/nginx/sites-available/xtream.conf</code></td>
@@ -746,11 +739,6 @@ sudo ./reset.sh --yes --no-backup
 <td><code>binaries not found: missing …</code></td>
 <td>run from a folder without the binaries</td>
 <td><code>cd</code> into the extracted folder or pass <code>--bin-dir DIR</code></td>
-</tr>
-<tr>
-<td><code>--web-domain: no public site binary (web) …</code></td>
-<td>a release package was installed with <code>--web-domain</code></td>
-<td>leave the option out, or build the site from source with <code>make build-web</code> and copy <code>build/web</code> next to the other binaries</td>
 </tr>
 <tr>
 <td><code>--main-url is required for --role node</code></td>
