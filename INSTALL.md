@@ -26,10 +26,7 @@ welcome at <https://github.com/xtreamui-pro/download>.
 
 **What the package does not hold**
 
-- The public website (`cmd/web`: landing, legal pages, help centre). It is not part of releases. Build it from source with `make build-web` when you want it; `install.sh` then creates the `xtream-web` unit because the binary sits next to the others.
 - The billing / shop connectors (WHMCS, WooCommerce, Odoo, …). They are published on their own at <https://plugins.xtream-ui.pro> and can be downloaded from the dashboard (Connectors page).
-
-The binaries are statically linked and packed with `upx --ultra-brute`: `file` reports `ELF … statically linked`, `upx -l <binary>` shows the ratio, and the first start of each process takes a few hundred milliseconds longer. Long-running services are not affected.
 
 ---
 
@@ -195,7 +192,6 @@ The agent exits with code 3 and systemd does **not** restart it (`RestartPrevent
 | `--bin-dir DIR` | `./build`, or `.` when the binaries sit next to the script | Where the binaries are taken from. Missing binaries on a machine with Go + pnpm trigger `make build` |
 | `--with-nginx` | off | Install nginx, write `/etc/nginx/sites-available/xtream.conf`, disable the `default` site |
 | `--dashboard-domain HOST`, `--api-domain HOST`, `--media-domain HOST` | empty | One name per service (with `--with-nginx`; any subset) |
-| `--web-domain HOST` | empty | Root domain of the public site (`cmd/web`, unit `xtream-web`, port 8081); nginx serves `HOST` and `www.HOST`. Needs a `web` binary next to the others (`make build-web`): release packages do not carry one, so leave this out when installing a release — the script stops with a message otherwise |
 | `--playback-base-url URL` | `http://<media-domain>` or `http://<ip>:8080` | URL viewers use for the origin media server, written to the env file |
 | `--cluster-api-url URL` | `http://<api-domain>` or `http://<ip>:8082` | URL nodes use for `cmd/api`, written to the env file |
 | `--node-whitelist LIST` | `127.0.0.1/32` | Comma-separated IPs / CIDRs of legacy nodes allowed on the origin's `/api/sync/*` |
@@ -256,7 +252,7 @@ The agent exits with code 3 and systemd does **not** restart it (`RestartPrevent
 
 | Path | Content |
 | --- | --- |
-| `/opt/xtream/bin/` | `dashboard api worker seed serve recording` (main) or `serve cluster` (node); `web` only when the binary was next to the others |
+| `/opt/xtream/bin/` | `dashboard api worker seed serve recording` (main) or `serve cluster` (node) |
 | `/opt/xtream/packages/` | the node package the dashboard installs nodes from over SSH |
 | `/opt/xtream/VERSION` | version stamp (shown at the foot of the dashboard sidebar) |
 | `/usr/local/bin/xtream-serve` | symlink to `serve`, for `xtream-serve sign "Film (2024)"` |
@@ -268,7 +264,7 @@ The agent exits with code 3 and systemd does **not** restart it (`RestartPrevent
 | `/var/lib/xtream/backups/` | database dumps (worker schedule and pre-upgrade dumps), mode 700 |
 | `/var/lib/xtream/recording/` | recorder `config.json` and recordings |
 | `/var/cache/xtream/` | node VOD cache |
-| `/etc/systemd/system/xtream-*.service` | `xtream-dashboard`, `xtream-api`, `xtream-worker`, `xtream-serve`, `xtream-recording` (main; `xtream-web` only with a web binary); `xtream-serve`, `xtream-cluster-agent` (node) |
+| `/etc/systemd/system/xtream-*.service` | `xtream-dashboard`, `xtream-api`, `xtream-worker`, `xtream-serve`, `xtream-recording` (main); `xtream-serve`, `xtream-cluster-agent` (node) |
 | `/etc/nginx/sites-available/xtream.conf` | with `--with-nginx` |
 | `/etc/sysctl.d/90-xtream.conf`, `/etc/security/limits.d/90-xtream.conf` | kernel and file-descriptor tuning |
 | `/etc/postgresql/<ver>/main/conf.d/90-xtream.conf`, `/etc/redis/xtream.conf` | database and cache tuning sized from the machine's CPU and RAM |
@@ -351,7 +347,6 @@ After a reset **every dashboard password is gone**. The seed creates one `admin`
 | `tar: Skipping to next header` / `Exiting with failure status` | corrupt `.tar.gz`: interrupted upload, or an HTML page downloaded instead of the file (link without `-L`, the release page instead of the asset) | `file xtreampro-*.tar.gz` must say `gzip compressed data` and `sha256sum -c SHA256SUMS --ignore-missing` must be `OK`; download again directly on the server (section 1) |
 | `run as root` | `sudo` missing | `sudo ./install.sh …` |
 | `binaries not found: missing …` | run from a folder without the binaries | `cd` into the extracted folder or pass `--bin-dir DIR` |
-| `--web-domain: no public site binary (web) …` | a release package was installed with `--web-domain` | leave the option out, or build the site from source with `make build-web` and copy `build/web` next to the other binaries |
 | `--main-url is required for --role node` | node options missing | see table B1 |
 | `enroll: control plane answered 401 invalid_code` | wrong code, or older than 30 minutes | create a new code in the dashboard |
 | `enroll: the control plane URL must be https://` | `--api-url` is `http://` | use `https://`, or `--allow-insecure` on a private network |
