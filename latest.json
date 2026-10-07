@@ -2,13 +2,13 @@
   "packages": [
     {
       "arch": "amd64",
-      "file": "xtreampro-v1.3.23-linux-amd64.tar.gz",
-      "url": "https://github.com/xtreamui-pro/download/releases/download/v1.3.23/xtreampro-v1.3.23-linux-amd64.tar.gz",
-      "size": 62423744,
-      "sha256": "09734fb94dc8a95056fa3e7377670665dc4714ad572ae8fd55faea31f818522c"
+      "file": "xtreampro-v1.3.24-linux-amd64.tar.gz",
+      "url": "https://github.com/xtreamui-pro/download/releases/download/v1.3.24/xtreampro-v1.3.24-linux-amd64.tar.gz",
+      "size": 62504705,
+      "sha256": "1db242b87b02108bfd98c451069e7aff4cf7d5fbcb39e73fac5bc3fc4a7bf832"
     }
   ],
-  "released": "2026-10-07T21:58:42Z",
-  "sha256sums": "https://github.com/xtreamui-pro/download/releases/download/v1.3.23/SHA256SUMS",
-  "tag": "v1.3.23"
+  "released": "2026-10-07T22:58:32Z",
+  "sha256sums": "https://github.com/xtreamui-pro/download/releases/download/v1.3.24/SHA256SUMS",
+  "tag": "v1.3.24"
 }
