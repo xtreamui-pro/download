@@ -1,0 +1,854 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Download Xtream UI Pro</title>
+<meta name="description" content="Download Xtream UI Pro v1.3.15 for Ubuntu 22.04 / 24.04 and install it on your own server: packages, checksums and the full installation guide.">
+<link rel="canonical" href="https://download.xtream-ui.pro/">
+<meta name="color-scheme" content="light dark">
+<link rel="icon" type="image/svg+xml" href="logo.svg">
+<style>
+:root{--bg:#f7f7f8;--panel:#fff;--text:#18181b;--muted:#5f5f6b;--line:#e4e4e7;--brand:#1272c4;--brand-ink:#fff;--brand-soft:#e3f1fb;--code:#f1f1f3;--pre:#18181c;--pre-text:#ececf0}
+@media (prefers-color-scheme:dark){:root{--bg:#0f0f12;--panel:#18181c;--text:#ececf0;--muted:#a1a1ad;--line:#2c2c33;--brand:#38a9e8;--brand-ink:#06243a;--brand-soft:#10283d;--code:#232329;--pre:#0b0b0e;--pre-text:#ececf0}}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:76px}
+body{margin:0;background:var(--bg);color:var(--text);font:16px/1.65 system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;-webkit-font-smoothing:antialiased}
+a{color:var(--brand)}
+a:hover{text-decoration:none}
+code,pre,kbd{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:.86em}
+:not(pre)>code{background:var(--code);padding:.1em .35em;border-radius:4px;overflow-wrap:anywhere}
+pre{position:relative;background:var(--pre);color:var(--pre-text);padding:14px 16px;border-radius:10px;overflow-x:auto;margin:14px 0;line-height:1.5}
+pre code{background:none;padding:0;font-size:.85rem}
+.copy{position:absolute;top:8px;right:8px;font:inherit;font-size:.75rem;padding:3px 9px;border-radius:6px;border:1px solid #3a3a42;background:#232329;color:#d4d4dc;cursor:pointer;opacity:.85}
+.copy:hover{opacity:1}
+.wrap{max-width:1180px;margin:0 auto;padding:0 16px}
+header.top{position:sticky;top:0;z-index:10;background:color-mix(in srgb,var(--bg) 88%,transparent);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+header.top .wrap{display:flex;align-items:center;gap:20px;height:60px}
+.brand{display:flex;align-items:center;gap:10px;font-weight:700;color:var(--text);text-decoration:none;white-space:nowrap}
+.brand img{display:block;width:30px;height:30px}
+.brand span{color:var(--muted);font-weight:500}
+@media (max-width:420px){.brand span{display:none}}
+nav.links{display:flex;gap:18px;margin-left:auto;font-size:.94rem}
+nav.links a{color:var(--muted);text-decoration:none}
+nav.links a:hover{color:var(--text)}
+@media (max-width:760px){nav.links a:not(.gh){display:none}}
+.hero{padding-top:56px;padding-bottom:28px}
+.hero h1{font-size:clamp(1.9rem,4.5vw,2.7rem);line-height:1.15;margin:0 0 12px;letter-spacing:-.02em}
+.hero p{font-size:1.08rem;color:var(--muted);max-width:720px;margin:0 0 6px}
+.badge{display:inline-block;font-size:.8rem;font-weight:700;padding:3px 10px;border-radius:999px;background:var(--brand-soft);color:var(--brand);margin-bottom:14px}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:10px 16px;border-radius:8px;font-weight:600;text-decoration:none;border:1px solid var(--line);color:var(--text);background:var(--panel)}
+.btn.primary{background:var(--brand);border-color:var(--brand);color:var(--brand-ink)}
+.btn:hover{filter:brightness(.96)}
+section{padding:24px 0}
+h2.sec{font-size:1.45rem;margin:0 0 6px;letter-spacing:-.01em}
+.lead{color:var(--muted);margin:0 0 18px;max-width:780px}
+.pkgs{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:14px}
+.pkg{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:18px;display:flex;flex-direction:column;gap:8px;min-width:0}
+.pkg h3{margin:0;font-size:1.1rem}
+.pkg .for{color:var(--muted);font-size:.9rem;margin:0}
+.pkg .row{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+.pkg small{color:var(--muted)}
+.sha{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:.72rem;color:var(--muted);word-break:break-all;margin:0}
+.req{display:flex;flex-wrap:wrap;gap:8px 18px;margin:16px 0 0;padding:0;list-style:none;color:var(--muted);font-size:.92rem}
+.req li::before{content:"✓ ";color:var(--brand);font-weight:700}
+.layout{display:grid;grid-template-columns:240px minmax(0,1fr);gap:36px;align-items:start}
+@media (max-width:900px){.layout{grid-template-columns:minmax(0,1fr)}.toc{position:static!important;max-height:none!important}}
+.toc{position:sticky;top:76px;max-height:calc(100vh - 96px);overflow:auto;font-size:.92rem;border:1px solid var(--line);border-radius:12px;background:var(--panel);padding:14px 16px}
+.toc b{display:block;margin-bottom:6px}
+.toc ul{margin:0;padding:0;list-style:none}
+.toc li{margin:3px 0}
+.toc a{color:var(--muted);text-decoration:none}
+.toc a:hover,.toc a.on{color:var(--brand)}
+.guide{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:8px 28px 24px;min-width:0}
+@media (max-width:560px){.guide{padding:4px 16px 16px}}
+.guide h2{font-size:1.4rem;margin:34px 0 10px;padding-top:12px;border-top:1px solid var(--line);letter-spacing:-.01em}
+.guide h2:first-of-type{border-top:0}
+.guide h3{font-size:1.12rem;margin:24px 0 8px}
+.guide hr{display:none}
+.guide table{display:block;overflow-x:auto;border-collapse:collapse;margin:14px 0;font-size:.92rem;max-width:100%}
+.guide th,.guide td{border:1px solid var(--line);padding:7px 10px;text-align:left;vertical-align:top}
+.guide th{background:var(--code)}
+.guide li{margin:4px 0}
+footer{border-top:1px solid var(--line);padding:28px 0 40px;color:var(--muted);font-size:.9rem;margin-top:24px}
+footer .wrap{display:flex;flex-wrap:wrap;gap:8px 24px;justify-content:space-between}
+</style>
+</head>
+<body>
+<header class="top">
+  <div class="wrap">
+    <a class="brand" href="#top"><img src="logo.svg" width="30" height="30" alt=""> Xtream UI Pro <span>Download</span></a>
+    <nav class="links">
+      <a href="#download">Download</a>
+      <a href="#guide">Installation guide</a>
+      <a href="https://plugins.xtream-ui.pro">Connectors</a>
+      <a class="gh" href="https://github.com/xtreamui-pro/download">GitHub</a>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+  <div class="wrap hero">
+    <span class="badge">v1.3.15 · 7 October 2026</span>
+    <h1>Install Xtream UI Pro on your own server</h1>
+    <p>One package per CPU holds every service, the installer and the upgrade, uninstall and reset scripts. A single command sets up PostgreSQL, Redis, ffmpeg and the systemd services; with <code>--with-nginx</code> and your domains it also puts nginx in front.</p>
+    <ul class="req">
+      <li>Ubuntu 22.04 or 24.04 (VM or bare metal)</li>
+      <li>x86_64 or ARM64</li>
+      <li>root or sudo</li>
+      <li>a fresh server is best</li>
+    </ul>
+  </div>
+
+  <section id="download">
+    <div class="wrap">
+      <h2 class="sec">Download v1.3.15</h2>
+      <p class="lead">Download directly on the server: uploading by hand often damages the file. <code>uname -m</code> tells you which package you need: <code>x86_64</code> → amd64, <code>aarch64</code> → arm64.</p>
+      <div class="pkgs">
+        <div class="pkg">
+          <h3>Linux amd64</h3>
+          <p class="for">Intel / AMD, uname -m: x86_64</p>
+          <div class="row">
+            <a class="btn primary" href="https://github.com/xtreamui-pro/download/releases/download/v1.3.15/xtreampro-v1.3.15-linux-amd64.tar.gz">Download</a>
+            <small>xtreampro-v1.3.15-linux-amd64.tar.gz · 43.3 MB</small>
+          </div>
+          <p class="sha">SHA-256 3c8bb7c9f637f564da005f6a9f032ac85db782d4bfa26ec67aa7b5a1f1e7fde2</p>
+        </div>
+      </div>
+      <p class="lead"><b>This release has an amd64 package only.</b> For an ARM server (<code>uname -m</code> = <code>aarch64</code>) pick an earlier release with an arm64 package from <a href="https://github.com/xtreamui-pro/download/releases">all releases</a>.</p>
+
+      <h3>Quick install</h3>
+<pre><code>TAG=v1.3.15; ARCH=$(uname -m | sed 's/x86_64/amd64/;s/aarch64/arm64/')
+curl -fLO https://github.com/xtreamui-pro/download/releases/download/v1.3.15/xtreampro-$TAG-linux-$ARCH.tar.gz
+curl -fLO https://github.com/xtreamui-pro/download/releases/download/v1.3.15/SHA256SUMS
+sha256sum -c SHA256SUMS --ignore-missing          # must print ": OK"
+mkdir -p xtream &amp;&amp; tar -xzf xtreampro-$TAG-linux-$ARCH.tar.gz -C xtream &amp;&amp; cd xtream
+sudo ./install.sh</code></pre>
+      <p class="lead">That is the simplest install, reached by IP. Domains with TLS, edge nodes, the recorder and every option are in the guide below; read <a href="#after-the-install-required">After the install (required)</a> in any case. Upgrading a running server: <code>sudo ./upgrade.sh --tag v1.3.15</code>. Older versions: <a href="https://github.com/xtreamui-pro/download/releases">all releases</a>. For tools: <a href="latest.json">latest.json</a>.</p>
+    </div>
+  </section>
+
+  <section id="guide">
+    <div class="wrap">
+      <div class="layout">
+        <nav class="toc" aria-label="Guide sections">
+          <b>Xtream UI Pro — Installation guide (Ubuntu 22.04 / 24.04)</b>
+          <ul>
+            <li><a href="#1-get-the-package-onto-the-server">1. Get the package onto the server</a></li>
+            <li><a href="#2-scenario-a--main-server-panel--api--origin-media">2. Scenario A — main server (panel &#43; API &#43; origin media)</a></li>
+            <li><a href="#3-scenario-b--edge-node-media-server-close-to-the-viewers">3. Scenario B — edge node (media server close to the viewers)</a></li>
+            <li><a href="#4-all-options">4. All options</a></li>
+            <li><a href="#5-what-the-installer-creates">5. What the installer creates</a></li>
+            <li><a href="#6-day-to-day-operations">6. Day-to-day operations</a></li>
+            <li><a href="#7-upgrading-with-upgradesh">7. Upgrading with upgrade.sh</a></li>
+            <li><a href="#8-removing-with-uninstallsh">8. Removing with uninstall.sh</a></li>
+            <li><a href="#9-secrets-and-the-database-reset">9. Secrets and the database reset</a></li>
+            <li><a href="#10-common-errors">10. Common errors</a></li>
+          </ul>
+        </nav>
+        <article class="guide">
+          <p>This guide is published at <a href="https://download.xtream-ui.pro">https://download.xtream-ui.pro</a> and ships inside every
+release package as <code>README.md</code>. It explains how to install, upgrade and remove
+Xtream UI Pro on a bare Ubuntu server (VM or bare metal, systemd) with the
+scripts in the package, and lists every option they take. Corrections are
+welcome at <a href="https://github.com/xtreamui-pro/download">https://github.com/xtreamui-pro/download</a>.</p>
+<p><strong>What the package holds</strong></p>
+<table>
+<thead>
+<tr>
+<th>File</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>dashboard</code></td>
+<td>admin panel (port 8083)</td>
+</tr>
+<tr>
+<td><code>api</code></td>
+<td>subscriber API: Xtream Codes, MAG / Stalker portal, Enigma2, playlists, playback links, web player, Swagger (port 8082)</td>
+</tr>
+<tr>
+<td><code>worker</code></td>
+<td>background jobs: EPG, catalogue sync, backups, GeoIP, node installs over SSH</td>
+</tr>
+<tr>
+<td><code>seed</code></td>
+<td>creates / migrates the database schema and the first admin account</td>
+</tr>
+<tr>
+<td><code>serve</code></td>
+<td>media server: origin on the main server, cache + live fan-out on an edge node (port 8080)</td>
+</tr>
+<tr>
+<td><code>cluster</code></td>
+<td>edge node agent (enrol, heartbeat, commands); also inside the node package</td>
+</tr>
+<tr>
+<td><code>recording</code></td>
+<td>ffmpeg recorder with its own web UI (port 8084, optional)</td>
+</tr>
+<tr>
+<td><code>phpimport</code></td>
+<td>one-shot import of an existing PHP panel (categories, bouquets, groups, packages, users, lines) through its Admin API</td>
+</tr>
+<tr>
+<td><code>install.sh</code>, <code>upgrade.sh</code>, <code>uninstall.sh</code>, <code>reset.sh</code></td>
+<td>the scripts described below</td>
+</tr>
+<tr>
+<td><code>.env.example</code>, <code>examples/</code></td>
+<td>reference environment file and <code>serve</code> configurations (main / node)</td>
+</tr>
+<tr>
+<td><code>xtreampro-node-&lt;version&gt;-linux-&lt;arch&gt;.tar.gz</code></td>
+<td>the node package; <code>install.sh</code> copies it to <code>/opt/xtream/packages</code>, where the dashboard takes it from to install nodes over SSH</td>
+</tr>
+<tr>
+<td><code>deploy/monitoring/</code></td>
+<td>Prometheus / Grafana examples for the metrics endpoints</td>
+</tr>
+<tr>
+<td><code>VERSION</code>, <code>README.md</code>, <code>LICENSE</code></td>
+<td>the version stamp, this guide and the license of the software</td>
+</tr>
+</tbody>
+</table>
+<p><strong>What the package does not hold</strong></p>
+<ul>
+<li>The public website (<code>cmd/web</code>: landing, legal pages, help centre). It is not part of releases. Build it from source with <code>make build-web</code> when you want it; <code>install.sh</code> then creates the <code>xtream-web</code> unit because the binary sits next to the others.</li>
+<li>The billing / shop connectors (WHMCS, WooCommerce, Odoo, …). They are published on their own at <a href="https://plugins.xtream-ui.pro">https://plugins.xtream-ui.pro</a> and can be downloaded from the dashboard (Connectors page).</li>
+</ul>
+<p>The binaries are statically linked and packed with <code>upx --ultra-brute</code>: <code>file</code> reports <code>ELF … statically linked</code>, <code>upx -l &lt;binary&gt;</code> shows the ratio, and the first start of each process takes a few hundred milliseconds longer. Long-running services are not affected.</p>
+<hr>
+<h2 id="1-get-the-package-onto-the-server">1. Get the package onto the server</h2>
+<p>Download <strong>directly on the server</strong> (uploading by hand often corrupts the file).
+The current version and its packages are listed at <a href="https://download.xtream-ui.pro">https://download.xtream-ui.pro</a>;
+every version is kept at <a href="https://github.com/xtreamui-pro/download/releases">https://github.com/xtreamui-pro/download/releases</a>.</p>
+<pre><code class="language-sh">TAG=v1.3.0; ARCH=amd64        # TAG = the version to install; ARCH=arm64 on an ARM machine (uname -m: x86_64 → amd64, aarch64 → arm64)
+curl -fLO https://github.com/xtreamui-pro/download/releases/download/$TAG/xtreampro-$TAG-linux-$ARCH.tar.gz
+curl -fLO https://github.com/xtreamui-pro/download/releases/download/$TAG/SHA256SUMS
+</code></pre>
+<p>Verify and extract:</p>
+<pre><code class="language-sh">sha256sum -c SHA256SUMS --ignore-missing          # must print &quot;: OK&quot;
+mkdir -p xtream &amp;&amp; tar -xzf xtreampro-$TAG-linux-$ARCH.tar.gz -C xtream
+cd xtream &amp;&amp; ls
+#  api  cluster  dashboard  phpimport  recording  seed  serve  worker  install.sh  upgrade.sh  uninstall.sh  reset.sh
+#  .env.example  examples/  deploy/  README.md  LICENSE  VERSION  xtreampro-node-&lt;version&gt;-linux-&lt;arch&gt;.tar.gz
+</code></pre>
+<p>Extract <strong>on the server</strong>. Files copied one by one through SFTP from Windows may lose the executable bit; the scripts still install (they <code>chmod 755</code> what they need), but run them with <code>bash ./install.sh</code> if the shell refuses to start them.</p>
+<hr>
+<h2 id="2-scenario-a--main-server-panel--api--origin-media">2. Scenario A — main server (panel + API + origin media)</h2>
+<p>The machine that runs the dashboard, the subscriber API, the worker and the origin media server. Run every command as root (<code>sudo</code>).</p>
+<h3 id="a1-simplest-reached-by-ip">A1. Simplest: reached by IP</h3>
+<pre><code class="language-sh">sudo ./install.sh
+</code></pre>
+<p>A few minutes later:</p>
+<table>
+<thead>
+<tr>
+<th>Component</th>
+<th>Address</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Dashboard</td>
+<td><code>http://&lt;ip&gt;:8083</code></td>
+</tr>
+<tr>
+<td>API + Swagger</td>
+<td><code>http://&lt;ip&gt;:8082/docs/</code></td>
+</tr>
+<tr>
+<td>Web player</td>
+<td><code>http://&lt;ip&gt;:8082/player/</code></td>
+</tr>
+<tr>
+<td>Media (serve)</td>
+<td><code>http://&lt;ip&gt;:8080</code></td>
+</tr>
+</tbody>
+</table>
+<p>The database password, <code>JWT_SECRET</code>, <code>XTREAM_SECRET</code>, <code>CLUSTER_SYNC_TOKEN</code> and the admin password (<code>ADMIN_PASSWORD</code>) are generated randomly and stored in <code>/etc/xtream/xtream.env</code>. The admin password is printed <strong>once</strong> at the end of the run.</p>
+<h3 id="a2-domains-nginx-in-front-firewall">A2. Domains, nginx in front, firewall</h3>
+<pre><code class="language-sh">sudo ./install.sh --with-nginx \
+  --dashboard-domain dash.example.com \
+  --api-domain api.example.com \
+  --media-domain media.example.com \
+  --with-ufw
+</code></pre>
+<p>The script writes one nginx site for the three names and sets <code>DASHBOARD_URL=http://dash.example.com</code>, <code>API_PUBLIC_URL=http://api.example.com</code> (the host of the <code>get.php</code> links the dashboard builds for subscribers), <code>PLAYBACK_BASE_URL=http://media.example.com</code> and <code>CLUSTER_API_URL=http://api.example.com</code>. Add HTTPS afterwards:</p>
+<pre><code class="language-sh">sudo apt install -y certbot python3-certbot-nginx
+sudo certbot --nginx -d dash.example.com -d api.example.com -d media.example.com
+# re-run the installer with the same domain options: it keeps the certificates in the
+# nginx site and switches the four public URLs in /etc/xtream/xtream.env to https://
+sudo ./install.sh --with-nginx --dashboard-domain dash.example.com --api-domain api.example.com --media-domain media.example.com
+</code></pre>
+<p>A name behind Cloudflare (or any CDN that terminates TLS) is detected and <code>TRUSTED_PROXIES=private,cloudflare</code> is set so the API and the media server see the viewer's real address.</p>
+<h3 id="a3-edge-nodes-on-other-machines-later">A3. Edge nodes on other machines later</h3>
+<p>An enrolled node signs its cache-fill requests with its own key and the origin asks <code>cmd/api</code> for the list of valid nodes every minute, so <strong>no</strong> node IP has to be whitelisted. The whitelist only remains for legacy nodes that do not run the <code>cluster</code> agent:</p>
+<pre><code class="language-sh">sudo ./install.sh --with-nginx --dashboard-domain … --api-domain … --media-domain … \
+  --node-whitelist 203.0.113.10,203.0.113.11
+</code></pre>
+<p>To add one after the install, edit the <code>node_whitelist</code> array in <code>/etc/xtream/serve.json</code> and <code>sudo systemctl restart xtream-serve</code>.</p>
+<h3 id="a4-ffmpeg-recorder">A4. ffmpeg recorder</h3>
+<pre><code class="language-sh">sudo ./install.sh --with-recording
+</code></pre>
+<p>The <code>xtream-recording</code> unit listens on port 8084; on its first start it prints its web account and API token to the journal: <code>journalctl -u xtream-recording | grep Generated</code>.</p>
+<h3 id="after-the-install-required">After the install (required)</h3>
+<ol>
+<li>Sign in to the dashboard as <code>admin</code> with the password the installer printed (or <code>sudo grep ADMIN_PASSWORD /etc/xtream/xtream.env</code>) and <strong>change it at once</strong>. A later seed run (re-install, <code>upgrade.sh --seed</code>) never changes an existing account. The public showcase accounts (reseller, subreseller, user, demo) exist only when the install ran with <code>--with-demo</code>.</li>
+<li>Dashboard → Settings → <code>cluster.origin_sync_token</code> = the value of <code>CLUSTER_SYNC_TOKEN</code> in <code>/etc/xtream/xtream.env</code> (<code>sudo grep CLUSTER_SYNC_TOKEN /etc/xtream/xtream.env</code>).</li>
+<li>The sample subscriber <code>playerdemo</code> / <code>playerdemo</code> is for testing only; delete it before going public.</li>
+<li>Optional: the worker downloads <code>GeoLite2-ASN.mmdb</code> and <code>GeoLite2-Country.mmdb</code> into <code>/var/lib/xtream/geoip/</code> within a minute or two (<code>journalctl -u xtream-worker | grep geoip</code>). For MaxMind's own files set <code>MAXMIND_ACCOUNT_ID</code> / <code>MAXMIND_LICENSE_KEY</code> in the env file, or copy the files there and <code>sudo systemctl restart xtream-api</code>.</li>
+<li>Playback end to end: Dashboard → Tools → Playback check (pick a line and a channel).</li>
+</ol>
+<hr>
+<h2 id="3-scenario-b--edge-node-media-server-close-to-the-viewers">3. Scenario B — edge node (media server close to the viewers)</h2>
+<p>A node runs <code>serve</code> in node mode (VOD cache + live fan-out) and the <code>cluster</code> agent only. No PostgreSQL or Redis.</p>
+<h3 id="b1-what-to-collect-from-the-main-server">B1. What to collect from the main server</h3>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Where it comes from</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>--main-url</code></td>
+<td>public URL of the origin media server, e.g. <code>https://media.example.com</code></td>
+</tr>
+<tr>
+<td><code>--api-url</code></td>
+<td>public URL of <code>cmd/api</code>, e.g. <code>https://api.example.com</code></td>
+</tr>
+<tr>
+<td><code>--public-url</code></td>
+<td>URL viewers use to reach this node, e.g. <code>https://edge1.example.com</code> (or <code>http://&lt;node-ip&gt;:8080</code>)</td>
+</tr>
+<tr>
+<td><code>--enroll-code</code></td>
+<td>Dashboard → Servers → add a server for the node → Cluster Nodes → <strong>Create enrol code</strong> (<code>XCE-…</code>, valid 30 minutes)</td>
+</tr>
+</tbody>
+</table>
+<h3 id="b2-install-and-enrol-in-one-command">B2. Install and enrol in one command</h3>
+<pre><code class="language-sh">sudo ./install.sh --role node \
+  --main-url https://media.example.com \
+  --api-url https://api.example.com \
+  --public-url https://edge1.example.com \
+  --enroll-code XCE-XXXX-XXXX-XXXX-XXXX \
+  --with-ufw
+</code></pre>
+<p>A node <strong>never receives</strong> <code>XTREAM_SECRET</code>: it gets its own secret and private key when it enrols. <code>--api-url</code> must be <code>https://</code>; add <code>--allow-insecure</code> only on a test stack or a private network. A node installed from an old release: run <code>upgrade.sh</code> once, it removes <code>XTREAM_SECRET</code> from <code>/etc/xtream/xtream.env</code> and <code>secret</code> from <code>serve.json</code>.</p>
+<h3 id="b2b-install-a-node-or-a-proxy-from-the-dashboard-over-ssh">B2b. Install a node or a proxy from the dashboard over SSH</h3>
+<ol>
+<li>The main server needs the node package in <code>/opt/xtream/packages</code> (<code>xtreampro-node-&lt;version&gt;-linux-&lt;arch&gt;.tar.gz</code>). Every release package carries the one of its own architecture and <code>install.sh</code> copies it there; for another CPU run <code>make package-node GOARCH=arm64</code> from a source checkout and copy the file over.</li>
+<li>Dashboard → Servers → <strong>Add Server</strong>: the IP (and <strong>Server URL</strong> when viewers reach the node by another name), and on the SSH tab an account that is root or has password-less <code>sudo</code> (for example <code>ubuntu</code> on a fresh Ubuntu machine). SSH passwords and keys are encrypted at rest; the worker checks the SSH access right after saving.</li>
+<li>Dashboard → Servers → <strong>Install Load Balancer</strong>: pick the server → <strong>Check SSH</strong> (OS, CPU architecture, sudo, disk, clock drift, port 8080, reachability of <code>CLUSTER_API_URL</code>) → <strong>Install</strong>. Each step appears on the page as it runs. A main server installed by IP (plain-http API) has <code>CLUSTER_ALLOW_INSECURE=1</code> set for the worker; set it back to <code>0</code> once the API has an https name.</li>
+<li>The same page offers <strong>Upgrade</strong>, <strong>Restart services</strong>, <strong>Enroll again</strong> and <strong>Uninstall</strong>; Servers → <strong>Jobs</strong> lists every job with its steps, commands and output (secrets filtered).</li>
+<li><strong>Proxy</strong> (Servers → Proxies → Add Proxy, pick the proxied server): installs nginx on the proxy machine with one site that forwards everything to the hidden server, checks <code>/healthz</code> through it and restarts the hidden node so it trusts the proxy's address.</li>
+</ol>
+<p>The first SSH connection pins the machine's host key; after an OS re-install use Edit Server → SSH tab → <strong>Reset host key</strong>.</p>
+<p>Check: <code>journalctl -u xtream-cluster-agent -f</code> must show <code>config applied</code>, and Dashboard → Cluster Nodes shows the node as <strong>ok</strong>.</p>
+<h3 id="b3-install-first-enrol-later">B3. Install first, enrol later</h3>
+<p>Leave <code>--enroll-code</code> out: the script installs, enables the units but does not start the agent, and prints the enrol command. When you have a code:</p>
+<pre><code class="language-sh">sudo -u xtream /opt/xtream/bin/cluster enroll --state /etc/xtream/cluster.json \
+  --main https://api.example.com --code XCE-… --public-url https://edge1.example.com
+sudo systemctl start xtream-cluster-agent
+</code></pre>
+<h3 id="when-a-node-is-revoked-from-the-dashboard">When a node is revoked from the dashboard</h3>
+<p>The agent exits with code 3 and systemd does <strong>not</strong> restart it (<code>RestartPreventExitStatus=3</code>). To join again: create a new code, delete <code>/etc/xtream/cluster.json</code>, run the enrol command of B3 (or Dashboard → Install Load Balancer → <strong>Enroll again</strong>).</p>
+<hr>
+<h2 id="4-all-options">4. All options</h2>
+<h3 id="installsh"><code>install.sh</code></h3>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Default</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>--role main|node</code></td>
+<td><code>main</code> (or the role of an existing install)</td>
+<td>Main server or edge node</td>
+</tr>
+<tr>
+<td><code>--bin-dir DIR</code></td>
+<td><code>./build</code>, or <code>.</code> when the binaries sit next to the script</td>
+<td>Where the binaries are taken from. Missing binaries on a machine with Go + pnpm trigger <code>make build</code></td>
+</tr>
+<tr>
+<td><code>--with-nginx</code></td>
+<td>off</td>
+<td>Install nginx, write <code>/etc/nginx/sites-available/xtream.conf</code>, disable the <code>default</code> site</td>
+</tr>
+<tr>
+<td><code>--dashboard-domain HOST</code>, <code>--api-domain HOST</code>, <code>--media-domain HOST</code></td>
+<td>empty</td>
+<td>One name per service (with <code>--with-nginx</code>; any subset)</td>
+</tr>
+<tr>
+<td><code>--web-domain HOST</code></td>
+<td>empty</td>
+<td>Root domain of the public site (<code>cmd/web</code>, unit <code>xtream-web</code>, port 8081); nginx serves <code>HOST</code> and <code>www.HOST</code>. Needs a <code>web</code> binary next to the others (<code>make build-web</code>): release packages do not carry one, so leave this out when installing a release — the script stops with a message otherwise</td>
+</tr>
+<tr>
+<td><code>--playback-base-url URL</code></td>
+<td><code>http://&lt;media-domain&gt;</code> or <code>http://&lt;ip&gt;:8080</code></td>
+<td>URL viewers use for the origin media server, written to the env file</td>
+</tr>
+<tr>
+<td><code>--cluster-api-url URL</code></td>
+<td><code>http://&lt;api-domain&gt;</code> or <code>http://&lt;ip&gt;:8082</code></td>
+<td>URL nodes use for <code>cmd/api</code>, written to the env file</td>
+</tr>
+<tr>
+<td><code>--node-whitelist LIST</code></td>
+<td><code>127.0.0.1/32</code></td>
+<td>Comma-separated IPs / CIDRs of legacy nodes allowed on the origin's <code>/api/sync/*</code></td>
+</tr>
+<tr>
+<td><code>--with-recording</code></td>
+<td>off</td>
+<td>Enable the <code>xtream-recording</code> unit (port 8084)</td>
+</tr>
+<tr>
+<td><code>--with-ufw</code></td>
+<td>off</td>
+<td>Install ufw and open the sshd port(s) in use (read from <code>sshd -T</code>, default 22) plus 80/443 (with nginx) or 8080–8083 (without); a node opens 8080</td>
+</tr>
+<tr>
+<td><code>--with-fail2ban</code></td>
+<td>off</td>
+<td>Install fail2ban with exactly two jails (<code>/etc/fail2ban/jail.d/xtream.local</code>): <code>sshd</code> (5 failures / 10 minutes) and <code>xtream-dashboard</code> (20 <code>401</code> answers from the dashboard in 10 minutes); 1-hour ban. A node gets the <code>sshd</code> jail only. <code>cmd/api</code> is never blocked</td>
+</tr>
+<tr>
+<td><code>--with-demo</code></td>
+<td>off</td>
+<td>The seed also creates the sample catalogue and the public showcase accounts (<code>SEED_DEMO=1</code>). Not for a server open to the Internet</td>
+</tr>
+<tr>
+<td><code>--skip-seed</code></td>
+<td>seed runs</td>
+<td>Do not run <code>seed</code> (binary upgrade without touching the schema)</td>
+</tr>
+<tr>
+<td><code>--no-tuning</code></td>
+<td>tuning on</td>
+<td>Skip <code>sysctl.d/90-xtream.conf</code>, <code>limits.d/90-xtream.conf</code> and the PostgreSQL / Redis tuning</td>
+</tr>
+<tr>
+<td><code>--pg-version N</code></td>
+<td><code>18</code></td>
+<td>PostgreSQL major version installed from apt.postgresql.org</td>
+</tr>
+<tr>
+<td><code>--main-url URL</code></td>
+<td>—</td>
+<td><strong>Node</strong>: origin media server to cache-fill from (required)</td>
+</tr>
+<tr>
+<td><code>--api-url URL</code></td>
+<td>—</td>
+<td><strong>Node</strong>: control plane <code>cmd/api</code> (required)</td>
+</tr>
+<tr>
+<td><code>--public-url URL</code></td>
+<td>—</td>
+<td><strong>Node</strong>: URL viewers use to reach this node (required to enrol)</td>
+</tr>
+<tr>
+<td><code>--enroll-code CODE</code></td>
+<td>—</td>
+<td><strong>Node</strong>: one-time code from Dashboard → Cluster Nodes; without it, enrol later</td>
+</tr>
+<tr>
+<td><code>--enroll-code-file FILE</code></td>
+<td>—</td>
+<td><strong>Node</strong>: read the code from FILE and delete the file (keeps the code out of the process list)</td>
+</tr>
+<tr>
+<td><code>--allow-insecure</code></td>
+<td>off</td>
+<td><strong>Node</strong>: enrol although <code>--api-url</code> is plain <code>http://</code> (test stacks, private networks)</td>
+</tr>
+<tr>
+<td><code>-h</code>, <code>--help</code></td>
+<td></td>
+<td>Print the usage</td>
+</tr>
+</tbody>
+</table>
+<p><code>PLAYBACK_BASE_URL</code>, <code>CLUSTER_API_URL</code> and <code>node_whitelist</code> are written on the <strong>first</strong> install only; later changes go straight into the files. Secrets are never overwritten. The four public URLs of the env file follow the domain options of each run; a run without domain options leaves them alone.</p>
+<h3 id="upgradesh"><code>upgrade.sh</code></h3>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>--tag vX.Y.Z</code></td>
+<td>Download this GitHub release (the asset for <code>uname -m</code>) and <code>SHA256SUMS</code>; default repository <code>xtreamui-pro/download</code> (public, no login), change with <code>--repo owner/repo</code> or the env <code>XTREAM_REPO</code>; a private repository needs <code>gh auth login</code></td>
+</tr>
+<tr>
+<td><code>--file PKG</code></td>
+<td>Use a downloaded <code>.tar.gz</code> (verified when <code>SHA256SUMS</code> sits next to it)</td>
+</tr>
+<tr>
+<td><code>--dir DIR</code></td>
+<td>Use an already extracted package folder (default: the folder <code>upgrade.sh</code> runs from)</td>
+</tr>
+<tr>
+<td><code>--seed</code></td>
+<td>Also run <code>seed</code> (schema migration + missing defaults; existing accounts are never changed). Default: binaries only</td>
+</tr>
+<tr>
+<td><code>--no-tuning</code></td>
+<td>Pass <code>--no-tuning</code> to <code>install.sh</code></td>
+</tr>
+<tr>
+<td><code>--rollback</code></td>
+<td>Restore the newest binaries backup from <code>/opt/xtream/backup</code> and restart. The database is <strong>not</strong> touched; the newest pre-upgrade dump and the <code>pg_restore</code> command are printed</td>
+</tr>
+<tr>
+<td><code>--require-backup</code></td>
+<td>Abort when the pre-upgrade <code>pg_dump</code> fails or <code>pg_dump</code> is missing (default: warn and go on)</td>
+</tr>
+<tr>
+<td><code>--yes</code>, <code>-y</code></td>
+<td>No confirmation prompt</td>
+</tr>
+<tr>
+<td><code>--</code></td>
+<td>Everything after it is passed to <code>install.sh</code> (for example <code>--with-recording</code>)</td>
+</tr>
+</tbody>
+</table>
+<h3 id="uninstallsh"><code>uninstall.sh</code></h3>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>(none)</td>
+<td>Stop and remove the units, binaries, tuning files and the nginx site; <code>/etc/xtream</code> is archived to <code>/root/xtream-config-&lt;timestamp&gt;.tgz</code> and removed</td>
+</tr>
+<tr>
+<td><code>--purge-data</code></td>
+<td>Also delete <code>/var/lib/xtream</code> and <code>/var/cache/xtream</code> (media, recordings, GeoIP, node cache) and the <code>xtream</code> user</td>
+</tr>
+<tr>
+<td><code>--drop-db</code></td>
+<td>Also drop the database <code>xtreamprodb</code> and the role <code>xtream</code></td>
+</tr>
+<tr>
+<td><code>--all</code></td>
+<td><code>--purge-data --drop-db</code></td>
+</tr>
+<tr>
+<td><code>--yes</code>, <code>-y</code></td>
+<td>No confirmation prompt</td>
+</tr>
+</tbody>
+</table>
+<h3 id="resetsh"><code>reset.sh</code></h3>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>(none)</td>
+<td>Detects the mode: <code>/etc/xtream/xtream.env</code> → systemd install; a running <code>xtream-dashboard</code> / <code>xtream-api</code> container → docker; else development</td>
+</tr>
+<tr>
+<td><code>--mode install|docker|dev</code></td>
+<td>Force the mode</td>
+</tr>
+<tr>
+<td><code>--yes</code></td>
+<td>Skip the confirmation (typing the database name)</td>
+</tr>
+<tr>
+<td><code>--no-backup</code></td>
+<td>Skip the <code>pg_dump</code> taken before the reset</td>
+</tr>
+<tr>
+<td><code>--keep-redis</code></td>
+<td>Keep Redis database 0 instead of flushing it</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h2 id="5-what-the-installer-creates">5. What the installer creates</h2>
+<table>
+<thead>
+<tr>
+<th>Path</th>
+<th>Content</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>/opt/xtream/bin/</code></td>
+<td><code>dashboard api worker seed serve recording</code> (main) or <code>serve cluster</code> (node); <code>web</code> only when the binary was next to the others</td>
+</tr>
+<tr>
+<td><code>/opt/xtream/packages/</code></td>
+<td>the node package the dashboard installs nodes from over SSH</td>
+</tr>
+<tr>
+<td><code>/opt/xtream/VERSION</code></td>
+<td>version stamp (shown at the foot of the dashboard sidebar)</td>
+</tr>
+<tr>
+<td><code>/usr/local/bin/xtream-serve</code></td>
+<td>symlink to <code>serve</code>, for <code>xtream-serve sign &quot;Film (2024)&quot;</code></td>
+</tr>
+<tr>
+<td><code>/etc/xtream/xtream.env</code></td>
+<td>environment variables and secrets, mode <code>root:xtream 640</code></td>
+</tr>
+<tr>
+<td><code>/etc/xtream/serve.json</code></td>
+<td><code>serve</code> configuration (main or node)</td>
+</tr>
+<tr>
+<td><code>/etc/xtream/cluster.json</code>, <code>node_runtime.json</code></td>
+<td>node: identity and runtime written by the agent</td>
+</tr>
+<tr>
+<td><code>/var/lib/xtream/media/</code></td>
+<td>VOD library, <code>enigma2/</code> (screenshots), <code>archive/</code> (live catch-up)</td>
+</tr>
+<tr>
+<td><code>/var/lib/xtream/geoip/</code></td>
+<td><code>.mmdb</code> files</td>
+</tr>
+<tr>
+<td><code>/var/lib/xtream/backups/</code></td>
+<td>database dumps (worker schedule and pre-upgrade dumps), mode 700</td>
+</tr>
+<tr>
+<td><code>/var/lib/xtream/recording/</code></td>
+<td>recorder <code>config.json</code> and recordings</td>
+</tr>
+<tr>
+<td><code>/var/cache/xtream/</code></td>
+<td>node VOD cache</td>
+</tr>
+<tr>
+<td><code>/etc/systemd/system/xtream-*.service</code></td>
+<td><code>xtream-dashboard</code>, <code>xtream-api</code>, <code>xtream-worker</code>, <code>xtream-serve</code>, <code>xtream-recording</code> (main; <code>xtream-web</code> only with a web binary); <code>xtream-serve</code>, <code>xtream-cluster-agent</code> (node)</td>
+</tr>
+<tr>
+<td><code>/etc/nginx/sites-available/xtream.conf</code></td>
+<td>with <code>--with-nginx</code></td>
+</tr>
+<tr>
+<td><code>/etc/sysctl.d/90-xtream.conf</code>, <code>/etc/security/limits.d/90-xtream.conf</code></td>
+<td>kernel and file-descriptor tuning</td>
+</tr>
+<tr>
+<td><code>/etc/postgresql/&lt;ver&gt;/main/conf.d/90-xtream.conf</code>, <code>/etc/redis/xtream.conf</code></td>
+<td>database and cache tuning sized from the machine's CPU and RAM</td>
+</tr>
+<tr>
+<td>system user <code>xtream</code></td>
+<td>every service runs as this user, never as root</td>
+</tr>
+<tr>
+<td>database</td>
+<td>role <code>xtream</code>, database <code>xtreamprodb</code>, extensions <code>uuid-ossp</code> + <code>citext</code></td>
+</tr>
+</tbody>
+</table>
+<p>The tuning files are rewritten on every run from <code>nproc</code> and <code>MemTotal</code> (re-run the installer after resizing the VM; <code>--no-tuning</code> skips it). PostgreSQL is restarted only when its tuning file changed. On a spinning disk, set <code>random_page_cost</code> back to <code>4</code> in the conf.d file if queries are slow.</p>
+<hr>
+<h2 id="6-day-to-day-operations">6. Day-to-day operations</h2>
+<pre><code class="language-sh">sudo systemctl status xtream-dashboard xtream-api xtream-worker xtream-serve
+sudo journalctl -u xtream-api -f                       # one service
+sudo journalctl -u 'xtream-*' --since -1h              # every service, last hour
+sudo nano /etc/xtream/xtream.env                       # change the configuration …
+sudo systemctl restart xtream-dashboard xtream-api xtream-worker xtream-serve   # … then restart
+sudo -u xtream bash -c 'set -a; . /etc/xtream/xtream.env; /opt/xtream/bin/seed'  # migrate / seed again
+xtream-serve sign &quot;Film (2024)&quot;                        # a signed /watch link for a test
+</code></pre>
+<p>Backups: the worker writes a verified <code>pg_dump</code> into <code>/var/lib/xtream/backups</code> every 24 hours (<code>DB_BACKUP_*</code> in the env file; <code>DB_BACKUP_ENCRYPTION_KEY</code> encrypts them, Settings → Backup copies them off-site to S3-compatible storage). By hand: <code>sudo -u postgres pg_dump -Fc xtreamprodb &gt; xtream-$(date +%F).dump</code>, plus a tar of <code>/var/lib/xtream/media</code> and <code>/etc/xtream</code>.</p>
+<hr>
+<h2 id="7-upgrading-with-upgradesh">7. Upgrading with <code>upgrade.sh</code></h2>
+<p><code>upgrade.sh</code> is in every release package. It downloads (or takes) the new package, verifies the checksum, <strong>backs up</strong> the binaries and <code>/etc/xtream</code> into <code>/opt/xtream/backup/&lt;timestamp&gt;/</code> (the last 3 are kept) and takes a pre-upgrade <code>pg_dump</code>, refuses to go on when the env file holds sample or too short secrets, calls <code>install.sh</code> with the role read from <code>/etc/xtream/serve.json</code> (env, secrets and configuration are kept), then runs a <strong>health check</strong> (dashboard <code>/healthz</code>, api <code>/readyz</code>, serve <code>/healthz</code>). A failure at any step <strong>rolls back</strong> to the previous binaries.</p>
+<pre><code class="language-sh">sudo ./upgrade.sh --tag v1.2.0          # download the package for this CPU from GitHub Releases + SHA256SUMS
+sudo ./upgrade.sh --file xtreampro-v1.2.0-linux-amd64.tar.gz   # a downloaded package (verified when SHA256SUMS is next to it)
+sudo ./upgrade.sh                       # from the extracted folder of the new package
+sudo ./upgrade.sh --tag v1.2.0 --seed   # with the schema migration (when the release notes say so)
+sudo ./upgrade.sh --rollback            # back to the newest backup
+sudo ./upgrade.sh --tag v1.2.0 -- --with-recording   # options after &quot;--&quot; go to install.sh
+</code></pre>
+<p>An edge node upgrades the same way: <code>upgrade.sh</code> detects the <code>node</code> role, no URL or secret has to be given again. Nodes can also be upgraded from the dashboard (Servers → Install Load Balancer → <strong>Upgrade</strong>).</p>
+<hr>
+<h2 id="8-removing-with-uninstallsh">8. Removing with <code>uninstall.sh</code></h2>
+<pre><code class="language-sh">sudo ./uninstall.sh                 # stop + remove the units, binaries, tuning, nginx site; /etc/xtream archived to /root/xtream-config-&lt;timestamp&gt;.tgz
+sudo ./uninstall.sh --purge-data    # also /var/lib/xtream, /var/cache/xtream and the xtream user
+sudo ./uninstall.sh --drop-db       # also the database xtreamprodb and the role xtream
+sudo ./uninstall.sh --all --yes     # everything, no questions
+</code></pre>
+<p>By default the media, recordings and the database are <strong>kept</strong>, so a re-install loses nothing. PostgreSQL, Redis, nginx, ufw and ffmpeg are never removed; certbot certificates stay in <code>/etc/letsencrypt</code>; the ufw rules for the 808x ports are removed, 22/80/443 stay.</p>
+<hr>
+<h2 id="9-secrets-and-the-database-reset">9. Secrets and the database reset</h2>
+<h3 id="sample-secrets-are-refused">Sample secrets are refused</h3>
+<p><code>dashboard</code>, <code>api</code> and <code>worker</code> exit at start when <code>JWT_SECRET</code> is unset, a sample value, or shorter than 32 bytes, or when <code>XTREAM_SECRET</code>, <code>CLUSTER_SYNC_TOKEN</code>, <code>SYSTEM_API_PASSWORD</code> or <code>ADMIN_API_KEY</code> is set to a sample value (<code>change-me…</code>, <code>mySecret</code>, <code>admin</code>, <code>password</code>, …). <code>upgrade.sh</code> checks <code>/etc/xtream/xtream.env</code> and <code>serve.json</code> before touching anything and stops naming the variable. Generate a value with <code>openssl rand -hex 32</code> (<code>CLUSTER_SYNC_TOKEN</code> must also match <code>sync_token</code> in <code>serve.json</code> and the setting <code>cluster.origin_sync_token</code>). <code>ALLOW_INSECURE_SECRETS=1</code> is for local development only.</p>
+<h3 id="reset-the-database-to-its-freshly-installed-state-resetsh">Reset the database to its freshly installed state: <code>reset.sh</code></h3>
+<p>Deletes <strong>all</strong> panel data (users, lines, streams, films, settings, logs) and runs <code>seed</code> again (schema, default settings, the <code>admin</code> account). Media files on disk are not touched.</p>
+<pre><code class="language-sh">sudo ./reset.sh                  # systemd install: stop the services → pg_dump into /root → drop + recreate the database → seed → start the services
+sudo ./reset.sh --yes --no-backup
+</code></pre>
+<p>After a reset <strong>every dashboard password is gone</strong>. The seed creates one <code>admin</code> account whose password is <code>ADMIN_PASSWORD</code> from <code>/etc/xtream/xtream.env</code>; when that is empty or a sample value, a random one is generated and printed <strong>once</strong> at the end (and must be changed at the first sign-in). The showcase accounts come back only with <code>--with-demo</code>. The script asks you to type the database name to confirm (<code>--yes</code> skips it) and flushes Redis database 0 (<code>--keep-redis</code> keeps it). To restore a dump: <code>pg_restore --clean --if-exists -d xtreamprodb &lt;file&gt;.dump</code>. An edge node has no database, so the script does not apply there.</p>
+<hr>
+<h2 id="10-common-errors">10. Common errors</h2>
+<table>
+<thead>
+<tr>
+<th>Message / symptom</th>
+<th>Cause</th>
+<th>Fix</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>tar: Skipping to next header</code> / <code>Exiting with failure status</code></td>
+<td>corrupt <code>.tar.gz</code>: interrupted upload, or an HTML page downloaded instead of the file (link without <code>-L</code>, the release page instead of the asset)</td>
+<td><code>file xtreampro-*.tar.gz</code> must say <code>gzip compressed data</code> and <code>sha256sum -c SHA256SUMS --ignore-missing</code> must be <code>OK</code>; download again directly on the server (section 1)</td>
+</tr>
+<tr>
+<td><code>run as root</code></td>
+<td><code>sudo</code> missing</td>
+<td><code>sudo ./install.sh …</code></td>
+</tr>
+<tr>
+<td><code>binaries not found: missing …</code></td>
+<td>run from a folder without the binaries</td>
+<td><code>cd</code> into the extracted folder or pass <code>--bin-dir DIR</code></td>
+</tr>
+<tr>
+<td><code>--web-domain: no public site binary (web) …</code></td>
+<td>a release package was installed with <code>--web-domain</code></td>
+<td>leave the option out, or build the site from source with <code>make build-web</code> and copy <code>build/web</code> next to the other binaries</td>
+</tr>
+<tr>
+<td><code>--main-url is required for --role node</code></td>
+<td>node options missing</td>
+<td>see table B1</td>
+</tr>
+<tr>
+<td><code>enroll: control plane answered 401 invalid_code</code></td>
+<td>wrong code, or older than 30 minutes</td>
+<td>create a new code in the dashboard</td>
+</tr>
+<tr>
+<td><code>enroll: the control plane URL must be https://</code></td>
+<td><code>--api-url</code> is <code>http://</code></td>
+<td>use <code>https://</code>, or <code>--allow-insecure</code> on a private network</td>
+</tr>
+<tr>
+<td>Node answers <code>502 upstream unavailable</code> on VOD</td>
+<td>the origin refuses the node (not in the enrolled list, or the origin has no <code>api_url</code>)</td>
+<td><code>sudo xtream-cluster doctor --origin https://media.example.com</code> on the node; check <code>api_url</code> in the origin's <code>serve.json</code></td>
+</tr>
+<tr>
+<td>Cluster Nodes shows <strong>clock drift</strong> / agent logs <code>clock is … off</code></td>
+<td>the node's clock is wrong</td>
+<td>enable NTP (<code>timedatectl set-ntp true</code>); more than 60 s and requests are refused</td>
+</tr>
+<tr>
+<td>Cluster Nodes shows <strong>not reachable from outside</strong></td>
+<td>the agent heartbeats, but <code>public_url</code> does not open from the main server</td>
+<td>DNS, firewall, the node's certificate</td>
+</tr>
+<tr>
+<td>The playback link from Lines → &quot;Play link&quot; returns 404 on the dashboard host</td>
+<td><code>get.php</code> is served by <code>api</code> (port 8082), not by the dashboard</td>
+<td>set <code>API_PUBLIC_URL</code> to the API's public URL (the installer does this with <code>--api-domain</code>) and restart <code>xtream-dashboard</code></td>
+</tr>
+<tr>
+<td><code>player_api.php</code> answers <code>Username or password is invalid</code></td>
+<td>the account is a panel <strong>user</strong>, not a <strong>line</strong></td>
+<td>create a line (Lines → Add Line) and take the play link from that row</td>
+</tr>
+<tr>
+<td><code>GeoIP … unavailable</code> in the API log</td>
+<td>no <code>.mmdb</code> file yet</td>
+<td>normal; the worker downloads one, or copy the files into <code>/var/lib/xtream/geoip</code></td>
+</tr>
+<tr>
+<td>The dashboard logs the proxy's address instead of the client's</td>
+<td>nginx on another machine</td>
+<td>put the proxy's address into <code>TRUSTED_PROXIES</code> in the env file</td>
+</tr>
+<tr>
+<td><code>upgrade.sh</code> stops with <code>… holds sample, empty or too short secrets</code></td>
+<td>the env file still carries sample values from an old install</td>
+<td>generate new values (section 9) and re-run</td>
+</tr>
+</tbody>
+</table>
+
+        </article>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>© Xtream UI Pro · proprietary software, <a href="https://github.com/xtreamui-pro/download/blob/main/LICENSE">license</a> · guide under CC BY 4.0 · <a href="https://github.com/xtreamui-pro/download">improve this guide on GitHub</a></span>
+    <span><a href="https://plugins.xtream-ui.pro">Connectors for billing systems and shops</a></span>
+  </div>
+</footer>
+
+<script>
+(function () {
+  document.querySelectorAll('pre').forEach(function (pre) {
+    if (!navigator.clipboard) return;
+    var b = document.createElement('button');
+    b.type = 'button'; b.className = 'copy'; b.textContent = 'Copy';
+    b.addEventListener('click', function () {
+      navigator.clipboard.writeText(pre.querySelector('code').innerText).then(function () {
+        b.textContent = 'Copied'; setTimeout(function () { b.textContent = 'Copy'; }, 1500);
+      });
+    });
+    pre.appendChild(b);
+  });
+  var links = document.querySelectorAll('.toc a');
+  if (!('IntersectionObserver' in window) || !links.length) return;
+  var byId = {};
+  links.forEach(function (a) { byId[a.getAttribute('href').slice(1)] = a; });
+  var io = new IntersectionObserver(function (entries) {
+    entries.forEach(function (e) {
+      if (!e.isIntersecting) return;
+      links.forEach(function (a) { a.classList.remove('on'); });
+      var a = byId[e.target.id]; if (a) a.classList.add('on');
+    });
+  }, { rootMargin: '-80px 0px -70% 0px' });
+  document.querySelectorAll('.guide h2[id]').forEach(function (h) { io.observe(h); });
+})();
+</script>
+</body>
+</html>
