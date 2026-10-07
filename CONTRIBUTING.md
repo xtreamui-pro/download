@@ -22,3 +22,9 @@ you paste anything.**
    in an issue instead of guessing.
 
 A merged change appears on the website and inside the packages with the next release.
+
+## License of contributions
+
+By opening a pull request you agree that your contribution to the guide is licensed under
+CC BY 4.0, like the rest of the guide (see [LICENSE](LICENSE)). Do not submit text or images
+you do not have the right to share.

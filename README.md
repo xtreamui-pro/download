@@ -33,3 +33,10 @@ Then follow *After the install (required)* in [INSTALL.md](INSTALL.md).
 Found a step that is wrong or unclear? Open an issue or a pull request against
 `INSTALL.md` — see [CONTRIBUTING.md](CONTRIBUTING.md). Problems with the software itself
 can be reported as an issue here too.
+
+## License
+
+The software in the releases is proprietary: © Xtream UI Pro, all rights reserved. You may
+download it and run it on your own servers to operate your own service; you may not resell,
+redistribute or reverse engineer it. The installation guide is under CC BY 4.0. Full terms:
+[LICENSE](LICENSE). The connectors at <https://plugins.xtream-ui.pro> are MIT-licensed.

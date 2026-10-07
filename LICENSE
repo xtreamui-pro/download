@@ -1,0 +1,83 @@
+Xtream UI Pro — Software License
+
+Copyright (c) 2026 Xtream UI Pro. All rights reserved.
+
+This license covers the software published in this repository's releases: the
+packages xtreampro-<version>-linux-<arch>.tar.gz and everything in them (the
+programs, the node package, the scripts and the example files), together
+called "the Software". The installation guide is licensed separately, see
+"Documentation" below.
+
+1. Grant
+
+   Xtream UI Pro grants you a non-exclusive, non-transferable, revocable
+   license to download the Software, install it on servers you own or control,
+   and run it to operate your own service, on as many servers as you need.
+
+2. Restrictions
+
+   You may not, and may not allow anyone else to:
+
+   a. sell, rent, lease, sublicense or redistribute the Software, in whole or
+      in part, or offer it for download anywhere other than this repository;
+   b. reverse engineer, decompile or disassemble the Software, or attempt to
+      derive its source code, except to the extent the law applicable to you
+      expressly permits this despite this restriction;
+   c. modify the Software or create derivative works of it, other than
+      changing its configuration files and the settings it offers;
+   d. remove or alter any copyright notice, version stamp or license notice in
+      the Software;
+   e. use the Software in violation of any applicable law, including copyright
+      law and the rights of the owners of the content you distribute with it.
+
+3. Ownership
+
+   The Software is licensed, not sold. Xtream UI Pro keeps all rights, title
+   and interest in the Software, including all intellectual property rights.
+   Any right not expressly granted in this license is reserved.
+
+4. Third-party components
+
+   The Software includes open-source components that are licensed under their
+   own terms. Those terms apply to those components, and nothing in this
+   license limits the rights they give you.
+
+5. Termination
+
+   This license ends automatically if you breach any of its terms. When it
+   ends you must stop using the Software and delete every copy of it in your
+   possession. Sections 3, 6 and 7 survive termination.
+
+6. No warranty
+
+   THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+   IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+   FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
+
+7. Limitation of liability
+
+   IN NO EVENT SHALL XTREAM UI PRO OR ITS CONTRIBUTORS BE LIABLE FOR ANY CLAIM,
+   DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR
+   OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE
+   USE OR OTHER DEALINGS IN THE SOFTWARE, INCLUDING LOSS OF DATA, REVENUE OR
+   SERVICE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGES.
+
+8. Changes
+
+   Xtream UI Pro may publish a new version of this license. Each release is
+   governed by the license published with it.
+
+Documentation
+
+   The installation guide (INSTALL.md, README.md, CONTRIBUTING.md and the text
+   of https://download.xtream-ui.pro) is licensed under the Creative Commons
+   Attribution 4.0 International License (CC BY 4.0):
+   https://creativecommons.org/licenses/by/4.0/
+   You may share and adapt it, provided you give appropriate credit to
+   Xtream UI Pro. CC BY 4.0 does not apply to the Software.
+
+Connectors
+
+   The connectors for billing systems and shops are published separately, at
+   https://github.com/xtreamui-pro/plugins, under the MIT license; this license
+   does not apply to them.

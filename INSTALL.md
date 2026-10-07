@@ -22,7 +22,7 @@ welcome at <https://github.com/xtreamui-pro/download>.
 | `.env.example`, `examples/` | reference environment file and `serve` configurations (main / node) |
 | `xtreampro-node-<version>-linux-<arch>.tar.gz` | the node package; `install.sh` copies it to `/opt/xtream/packages`, where the dashboard takes it from to install nodes over SSH |
 | `deploy/monitoring/` | Prometheus / Grafana examples for the metrics endpoints |
-| `VERSION`, `README.md` | the version stamp and this guide |
+| `VERSION`, `README.md`, `LICENSE` | the version stamp, this guide and the license of the software |
 
 **What the package does not hold**
 
@@ -52,7 +52,7 @@ sha256sum -c SHA256SUMS --ignore-missing          # must print ": OK"
 mkdir -p xtream && tar -xzf xtreampro-$TAG-linux-$ARCH.tar.gz -C xtream
 cd xtream && ls
 #  api  cluster  dashboard  phpimport  recording  seed  serve  worker  install.sh  upgrade.sh  uninstall.sh  reset.sh
-#  .env.example  examples/  deploy/  README.md  VERSION  xtreampro-node-<version>-linux-<arch>.tar.gz
+#  .env.example  examples/  deploy/  README.md  LICENSE  VERSION  xtreampro-node-<version>-linux-<arch>.tar.gz
 ```
 
 Extract **on the server**. Files copied one by one through SFTP from Windows may lose the executable bit; the scripts still install (they `chmod 755` what they need), but run them with `bash ./install.sh` if the shell refuses to start them.
