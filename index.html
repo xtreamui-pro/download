@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Download Xtream UI Pro</title>
-<meta name="description" content="Download Xtream UI Pro v1.3.26 for Ubuntu 22.04 / 24.04 and install it on your own server: packages, checksums and the full installation guide.">
+<meta name="description" content="Download Xtream UI Pro v1.3.27 for Ubuntu 22.04 / 24.04 and install it on your own server: packages, checksums and the full installation guide.">
 <link rel="canonical" href="https://download.xtream-ui.pro/">
 <meta name="color-scheme" content="light dark">
 <link rel="icon" type="image/svg+xml" href="logo.svg">
@@ -89,7 +89,7 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:8px 24px;justify-content:space-betw
 
 <main id="top">
   <div class="wrap hero">
-    <span class="badge">v1.3.26 · 9 October 2026</span>
+    <span class="badge">v1.3.27 · 9 October 2026</span>
     <h1>Install Xtream UI Pro on your own server</h1>
     <p>One package per CPU holds every service, the installer and the upgrade, uninstall and reset scripts. A single command sets up PostgreSQL, Redis, ffmpeg and the systemd services; with <code>--with-nginx</code> and your domains it also puts nginx in front.</p>
     <ul class="req">
@@ -102,29 +102,29 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:8px 24px;justify-content:space-betw
 
   <section id="download">
     <div class="wrap">
-      <h2 class="sec">Download v1.3.26</h2>
+      <h2 class="sec">Download v1.3.27</h2>
       <p class="lead">Download directly on the server: uploading by hand often damages the file. <code>uname -m</code> tells you which package you need: <code>x86_64</code> → amd64, <code>aarch64</code> → arm64.</p>
       <div class="pkgs">
         <div class="pkg">
           <h3>Linux amd64</h3>
           <p class="for">Intel / AMD, uname -m: x86_64</p>
           <div class="row">
-            <a class="btn primary" href="https://github.com/xtreamui-pro/download/releases/download/v1.3.26/xtreampro-v1.3.26-linux-amd64.tar.gz">Download</a>
-            <small>xtreampro-v1.3.26-linux-amd64.tar.gz · 43.5 MB</small>
+            <a class="btn primary" href="https://github.com/xtreamui-pro/download/releases/download/v1.3.27/xtreampro-v1.3.27-linux-amd64.tar.gz">Download</a>
+            <small>xtreampro-v1.3.27-linux-amd64.tar.gz · 43.7 MB</small>
           </div>
-          <p class="sha">SHA-256 fb31d47d025cbce18089c1b3e8745602dda37b4515686b98c884fcd5be69c2d9</p>
+          <p class="sha">SHA-256 3c0e4d62ce619b8f708dd5849e371ef046abc8d5184226bdb805ac5aa19345ef</p>
         </div>
       </div>
       <p class="lead"><b>This release has an amd64 package only.</b> For an ARM server (<code>uname -m</code> = <code>aarch64</code>) pick an earlier release with an arm64 package from <a href="https://github.com/xtreamui-pro/download/releases">all releases</a>.</p>
 
       <h3>Quick install</h3>
-<pre><code>TAG=v1.3.26; ARCH=$(uname -m | sed 's/x86_64/amd64/;s/aarch64/arm64/')
-curl -fLO https://github.com/xtreamui-pro/download/releases/download/v1.3.26/xtreampro-$TAG-linux-$ARCH.tar.gz
-curl -fLO https://github.com/xtreamui-pro/download/releases/download/v1.3.26/SHA256SUMS
+<pre><code>TAG=v1.3.27; ARCH=$(uname -m | sed 's/x86_64/amd64/;s/aarch64/arm64/')
+curl -fLO https://github.com/xtreamui-pro/download/releases/download/v1.3.27/xtreampro-$TAG-linux-$ARCH.tar.gz
+curl -fLO https://github.com/xtreamui-pro/download/releases/download/v1.3.27/SHA256SUMS
 sha256sum -c SHA256SUMS --ignore-missing          # must print ": OK"
 mkdir -p xtream &amp;&amp; tar -xzf xtreampro-$TAG-linux-$ARCH.tar.gz -C xtream &amp;&amp; cd xtream
 sudo ./install.sh</code></pre>
-      <p class="lead">That is the simplest install, reached by IP. Domains with TLS, edge nodes, the recorder and every option are in the guide below; read <a href="#after-the-install-required">After the install (required)</a> in any case. Upgrading a running server: <code>sudo ./upgrade.sh --tag v1.3.26</code>. Older versions: <a href="https://github.com/xtreamui-pro/download/releases">all releases</a>. For tools: <a href="latest.json">latest.json</a>.</p>
+      <p class="lead">That is the simplest install, reached by IP. Domains with TLS, edge nodes, the recorder and every option are in the guide below; read <a href="#after-the-install-required">After the install (required)</a> in any case. Upgrading a running server: <code>sudo ./upgrade.sh --tag v1.3.27</code>. Older versions: <a href="https://github.com/xtreamui-pro/download/releases">all releases</a>. For tools: <a href="latest.json">latest.json</a>.</p>
     </div>
   </section>
 
