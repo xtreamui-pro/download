@@ -10,7 +10,8 @@ This repository publishes Xtream UI Pro for self-hosting on Ubuntu 22.04 / 24.04
 - **[INSTALL.md](INSTALL.md)**: the full installation guide — every scenario (main server,
   edge node, domains and TLS, recorder) and every option of `install.sh`, `upgrade.sh`,
   `uninstall.sh` and `reset.sh`. The same text is `README.md` inside every package and the
-  main part of the website.
+  main part of the website. It also covers the first sign-in wizard and the optional
+  licence key (free tier: 50 lines, no node; updates need a valid key).
 
 Connectors for billing systems and shops (WHMCS, WooCommerce, Odoo, …) are published
 separately at <https://plugins.xtream-ui.pro>.

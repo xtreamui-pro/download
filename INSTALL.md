@@ -120,11 +120,35 @@ The `xtream-recording` unit listens on port 8084; on its first start it prints i
 
 ### After the install (required)
 
-1. Sign in to the dashboard as `admin` with the password the installer printed (or `sudo grep ADMIN_PASSWORD /etc/xtream/xtream.env`) and **change it at once**. A later seed run (re-install, `upgrade.sh --seed`) never changes an existing account. The public showcase accounts (reseller, subreseller, user, demo) exist only when the install ran with `--with-demo`.
+1. Sign in to the dashboard as `admin` with the password the installer printed (or `sudo grep ADMIN_PASSWORD /etc/xtream/xtream.env`). The first sign-in opens the **`/setup` wizard** (below), where you set a new password at once. A later seed run (re-install, `upgrade.sh --seed`) never changes an existing account.
 2. Dashboard → Settings → `cluster.origin_sync_token` = the value of `CLUSTER_SYNC_TOKEN` in `/etc/xtream/xtream.env` (`sudo grep CLUSTER_SYNC_TOKEN /etc/xtream/xtream.env`).
-3. The sample subscriber `playerdemo` / `playerdemo` is for testing only; delete it before going public.
+3. If you ticked the sample lines in the wizard, they are for testing only (their passwords are generated; delete them before going public).
 4. Optional: the worker downloads `GeoLite2-ASN.mmdb` and `GeoLite2-Country.mmdb` into `/var/lib/xtream/geoip/` within a minute or two (`journalctl -u xtream-worker | grep geoip`). For MaxMind's own files set `MAXMIND_ACCOUNT_ID` / `MAXMIND_LICENSE_KEY` in the env file, or copy the files there and `sudo systemctl restart xtream-api`.
 5. Playback end to end: Dashboard → Tools → Playback check (pick a line and a channel).
+
+### First sign-in: the `/setup` wizard
+
+The installer does not create any channels, movies or packages: a fresh panel starts empty and the first administrator chooses the starting catalogue. The first sign-in as `admin` opens the **`/setup` wizard** (it is shown once; **Skip** is refused while the generated password is still in place). It asks for:
+
+- the server name and time zone, an optional TMDB key and an optional licence key (below);
+- a new password for `admin` (required; you are signed out afterwards and sign in again with it);
+- the **starting catalogue**, only while the database holds no package, category, stream, movie or bouquet: the generic IPTV catalogue (the default), a starter pack for one of the industries listed on the website, or nothing at all. Ticking *sample lines* also creates a few test lines with generated passwords.
+
+The catalogue is imported in one step together with the other answers. There is no installer option for it: `--no-sample-data` no longer exists. A catalogue you chose in the wizard and have not used yet can be removed from the same page.
+
+### Licence key (optional)
+
+Without a key the panel runs as the **free tier**: 50 active lines and no cluster node, everything else unchanged. Playback is never stopped by a licence. To install with a key (main server only; a node holds no key and is covered by the key of its main server):
+
+```sh
+sudo ./install.sh --license-key /root/your.key          # a file holding the XUP1.… key, or the key itself
+```
+
+The installer checks the key with the new build first, then writes it to `/etc/xtream/license.key` (`root:xtream`, mode `0640`) and sets `LICENSE_KEY_FILE` in `/etc/xtream/xtream.env`. If this build was made after the key's maintenance ended, the installer stops before writing anything; add `--ignore-license` to install anyway and run as the free tier. You can also paste the key later in Dashboard → Settings → License, or in the `/setup` wizard.
+
+- **Check a key** at any time, offline: `/opt/xtream/bin/dashboard license --check --key /etc/xtream/license.key`. The panel never contacts the project to activate a key or to keep running.
+- **A key belongs to one server.** Settings → License shows this machine's fingerprint (`XFP1.…`); `/opt/xtream/bin/dashboard license fingerprint` prints the same. Send it when you order. **A new server needs a new key**: send the new machine's fingerprint and you receive a key for it.
+- **Renewal.** The key carries an "updates until" date. Renew from the order page of the website; paste the new key in Settings → License (it replaces the old one) or overwrite `/etc/xtream/license.key` and restart `xtream-dashboard`.
 
 ---
 
@@ -198,7 +222,8 @@ The agent exits with code 3 and systemd does **not** restart it (`RestartPrevent
 | `--with-recording` | off | Enable the `xtream-recording` unit (port 8084) |
 | `--with-ufw` | off | Install ufw and open the sshd port(s) in use (read from `sshd -T`, default 22) plus 80/443 (with nginx) or 8080–8083 (without); a node opens 8080 |
 | `--with-fail2ban` | off | Install fail2ban with exactly two jails (`/etc/fail2ban/jail.d/xtream.local`): `sshd` (5 failures / 10 minutes) and `xtream-dashboard` (20 `401` answers from the dashboard in 10 minutes); 1-hour ban. A node gets the `sshd` jail only. `cmd/api` is never blocked |
-| `--with-demo` | off | The seed also creates the sample catalogue and the public showcase accounts (`SEED_DEMO=1`). Not for a server open to the Internet |
+| `--license-key FILE\|KEY` | none | **Main server**: licence key (an `XUP1.…` key or a file holding one); checked with the new build, then written to `/etc/xtream/license.key`. Without it the panel is the free tier (50 lines, 0 nodes); add a key later in Settings → License. A node refuses it |
+| `--ignore-license` | off | Install although this build refuses the checked key (maintenance over, bad signature); the panel runs as the free tier |
 | `--skip-seed` | seed runs | Do not run `seed` (binary upgrade without touching the schema) |
 | `--no-tuning` | tuning on | Skip `sysctl.d/90-xtream.conf`, `limits.d/90-xtream.conf` and the PostgreSQL / Redis tuning |
 | `--pg-version N` | `18` | PostgreSQL major version installed from apt.postgresql.org |
@@ -220,6 +245,7 @@ The agent exits with code 3 and systemd does **not** restart it (`RestartPrevent
 | `--file PKG` | Use a downloaded `.tar.gz` (verified when `SHA256SUMS` sits next to it) |
 | `--dir DIR` | Use an already extracted package folder (default: the folder `upgrade.sh` runs from) |
 | `--seed` | Also run `seed` (schema migration + missing defaults; existing accounts are never changed). Default: binaries only |
+| `--ignore-license` | Upgrade although there is no key, or the new build refuses it: the new build runs as the free tier. Never installs a modified package |
 | `--no-tuning` | Pass `--no-tuning` to `install.sh` |
 | `--rollback` | Restore the newest binaries backup from `/opt/xtream/backup` and restart. The database is **not** touched; the newest pre-upgrade dump and the `pg_restore` command are printed |
 | `--require-backup` | Abort when the pre-upgrade `pg_dump` fails or `pg_dump` is missing (default: warn and go on) |
@@ -305,6 +331,15 @@ sudo ./upgrade.sh --tag v1.2.0 -- --with-recording   # options after "--" go to 
 ```
 
 An edge node upgrades the same way: `upgrade.sh` detects the `node` role, no URL or secret has to be given again. Nodes can also be upgraded from the dashboard (Servers → Install Load Balancer → **Upgrade**).
+
+### Updates and your licence key
+
+Updates are for installs with a valid licence key. On a main server `upgrade.sh` reads the key on the machine (Dashboard → Settings → License; or `LICENSE_KEY`; or `/etc/xtream/license.key`) and checks it offline against the new package before it touches anything. It stops, and changes nothing, when:
+
+- the key does not cover the new release: its "updates until" date is before the day the release was made. Patch releases of the minor version you already run (for example v1.4.x on v1.4) are always accepted;
+- there is no key at all.
+
+Nothing is sent to anyone: the download site is a static site, the project runs no licence server, and the panel's own update check sends only its version number. A panel without a valid key keeps running as the free tier (50 active lines, no cluster node); it just does not update by itself. To install a release anyway as the free tier, add `--ignore-license`; to update with full limits again, load a valid key and run `upgrade.sh` again. A package whose binaries were modified is never installed, and `--ignore-license` does not change that: download the package again from <https://download.xtream-ui.pro>. Nodes hold no key and upgrade without this check.
 
 ---
 
