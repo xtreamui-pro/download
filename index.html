@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Download Xtream UI Pro</title>
-<meta name="description" content="Download Xtream UI Pro v1.3.29 for Ubuntu 22.04 / 24.04 and install it on your own server: packages, checksums and the full installation guide.">
+<meta name="description" content="Download Xtream UI Pro v1.3.45 for Ubuntu 22.04 / 24.04 and install it on your own server: packages, checksums and the full installation guide.">
 <link rel="canonical" href="https://download.xtream-ui.pro/">
 <meta name="color-scheme" content="light dark">
 <link rel="icon" type="image/svg+xml" href="logo.svg">
@@ -89,7 +89,7 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:8px 24px;justify-content:space-betw
 
 <main id="top">
   <div class="wrap hero">
-    <span class="badge">v1.3.29 · 11 October 2026</span>
+    <span class="badge">v1.3.45 · 14 October 2026</span>
     <h1>Install Xtream UI Pro on your own server</h1>
     <p>One package per CPU holds every service, the installer and the upgrade, uninstall and reset scripts. A single command sets up PostgreSQL, Redis, ffmpeg and the systemd services; with <code>--with-nginx</code> and your domains it also puts nginx in front.</p>
     <ul class="req">
@@ -102,29 +102,29 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:8px 24px;justify-content:space-betw
 
   <section id="download">
     <div class="wrap">
-      <h2 class="sec">Download v1.3.29</h2>
+      <h2 class="sec">Download v1.3.45</h2>
       <p class="lead">Download directly on the server: uploading by hand often damages the file. <code>uname -m</code> tells you which package you need: <code>x86_64</code> → amd64, <code>aarch64</code> → arm64.</p>
       <div class="pkgs">
         <div class="pkg">
           <h3>Linux amd64</h3>
           <p class="for">Intel / AMD, uname -m: x86_64</p>
           <div class="row">
-            <a class="btn primary" href="https://github.com/xtreamui-pro/download/releases/download/v1.3.29/xtreampro-v1.3.29-linux-amd64.tar.gz">Download</a>
-            <small>xtreampro-v1.3.29-linux-amd64.tar.gz · 43.9 MB</small>
+            <a class="btn primary" href="https://github.com/xtreamui-pro/download/releases/download/v1.3.45/xtreampro-v1.3.45-linux-amd64.tar.gz">Download</a>
+            <small>xtreampro-v1.3.45-linux-amd64.tar.gz · 62.9 MB</small>
           </div>
-          <p class="sha">SHA-256 777b04d9b6947ac1df8d21904262651daad39b0dd06a942a78c75e610d9b2b88</p>
+          <p class="sha">SHA-256 be078904ea232900baf39cada7d952cfc1809af8510695763fa582293ee3370f</p>
         </div>
       </div>
       <p class="lead"><b>This release has an amd64 package only.</b> For an ARM server (<code>uname -m</code> = <code>aarch64</code>) pick an earlier release with an arm64 package from <a href="https://github.com/xtreamui-pro/download/releases">all releases</a>.</p>
 
       <h3>Quick install</h3>
-<pre><code>TAG=v1.3.29; ARCH=$(uname -m | sed 's/x86_64/amd64/;s/aarch64/arm64/')
-curl -fLO https://github.com/xtreamui-pro/download/releases/download/v1.3.29/xtreampro-$TAG-linux-$ARCH.tar.gz
-curl -fLO https://github.com/xtreamui-pro/download/releases/download/v1.3.29/SHA256SUMS
+<pre><code>TAG=v1.3.45; ARCH=$(uname -m | sed 's/x86_64/amd64/;s/aarch64/arm64/')
+curl -fLO https://github.com/xtreamui-pro/download/releases/download/v1.3.45/xtreampro-$TAG-linux-$ARCH.tar.gz
+curl -fLO https://github.com/xtreamui-pro/download/releases/download/v1.3.45/SHA256SUMS
 sha256sum -c SHA256SUMS --ignore-missing          # must print ": OK"
 mkdir -p xtream &amp;&amp; tar -xzf xtreampro-$TAG-linux-$ARCH.tar.gz -C xtream &amp;&amp; cd xtream
 sudo ./install.sh</code></pre>
-      <p class="lead">That is the simplest install, reached by IP. Domains with TLS, edge nodes, the recorder and every option are in the guide below; read <a href="#after-the-install-required">After the install (required)</a> in any case. Upgrading a running server: <code>sudo ./upgrade.sh --tag v1.3.29</code>. Older versions: <a href="https://github.com/xtreamui-pro/download/releases">all releases</a>. For tools: <a href="latest.json">latest.json</a>.</p>
+      <p class="lead">That is the simplest install, reached by IP. Domains with TLS, edge nodes, the recorder and every option are in the guide below; read <a href="#after-the-install-required">After the install (required)</a> in any case. Upgrading a running server: <code>sudo ./upgrade.sh --tag v1.3.45</code>. Older versions: <a href="https://github.com/xtreamui-pro/download/releases">all releases</a>. For tools: <a href="latest.json">latest.json</a>.</p>
     </div>
   </section>
 
@@ -297,12 +297,30 @@ sudo ./install.sh --with-nginx --dashboard-domain dash.example.com --api-domain 
 <p>The <code>xtream-recording</code> unit listens on port 8084; on its first start it prints its web account and API token to the journal: <code>journalctl -u xtream-recording | grep Generated</code>.</p>
 <h3 id="after-the-install-required">After the install (required)</h3>
 <ol>
-<li>Sign in to the dashboard as <code>admin</code> with the password the installer printed (or <code>sudo grep ADMIN_PASSWORD /etc/xtream/xtream.env</code>) and <strong>change it at once</strong>. A later seed run (re-install, <code>upgrade.sh --seed</code>) never changes an existing account. The public showcase accounts (reseller, subreseller, user, demo) exist only when the install ran with <code>--with-demo</code>.</li>
+<li>Sign in to the dashboard as <code>admin</code> with the password the installer printed (or <code>sudo grep ADMIN_PASSWORD /etc/xtream/xtream.env</code>). The first sign-in opens the <strong><code>/setup</code> wizard</strong> (below), where you set a new password at once. A later seed run (re-install, <code>upgrade.sh --seed</code>) never changes an existing account.</li>
 <li>Dashboard → Settings → <code>cluster.origin_sync_token</code> = the value of <code>CLUSTER_SYNC_TOKEN</code> in <code>/etc/xtream/xtream.env</code> (<code>sudo grep CLUSTER_SYNC_TOKEN /etc/xtream/xtream.env</code>).</li>
-<li>The sample subscriber <code>playerdemo</code> / <code>playerdemo</code> is for testing only; delete it before going public.</li>
+<li>If you ticked the sample lines in the wizard, they are for testing only (their passwords are generated; delete them before going public).</li>
 <li>Optional: the worker downloads <code>GeoLite2-ASN.mmdb</code> and <code>GeoLite2-Country.mmdb</code> into <code>/var/lib/xtream/geoip/</code> within a minute or two (<code>journalctl -u xtream-worker | grep geoip</code>). For MaxMind's own files set <code>MAXMIND_ACCOUNT_ID</code> / <code>MAXMIND_LICENSE_KEY</code> in the env file, or copy the files there and <code>sudo systemctl restart xtream-api</code>.</li>
 <li>Playback end to end: Dashboard → Tools → Playback check (pick a line and a channel).</li>
 </ol>
+<h3 id="first-sign-in-the-setup-wizard">First sign-in: the <code>/setup</code> wizard</h3>
+<p>The installer does not create any channels, movies or packages: a fresh panel starts empty and the first administrator chooses the starting catalogue. The first sign-in as <code>admin</code> opens the <strong><code>/setup</code> wizard</strong> (it is shown once; <strong>Skip</strong> is refused while the generated password is still in place). It asks for:</p>
+<ul>
+<li>the server name and time zone, an optional TMDB key and an optional licence key (below);</li>
+<li>a new password for <code>admin</code> (required; you are signed out afterwards and sign in again with it);</li>
+<li>the <strong>starting catalogue</strong>, only while the database holds no package, category, stream, movie or bouquet: the generic IPTV catalogue (the default), a starter pack for one of the industries listed on the website, or nothing at all. Ticking <em>sample lines</em> also creates a few test lines with generated passwords.</li>
+</ul>
+<p>The catalogue is imported in one step together with the other answers. There is no installer option for it: <code>--no-sample-data</code> no longer exists. A catalogue you chose in the wizard and have not used yet can be removed from the same page.</p>
+<h3 id="licence-key-optional">Licence key (optional)</h3>
+<p>Without a key the panel runs as the <strong>free tier</strong>: 50 active lines and no cluster node, everything else unchanged. Playback is never stopped by a licence. To install with a key (main server only; a node holds no key and is covered by the key of its main server):</p>
+<pre><code class="language-sh">sudo ./install.sh --license-key /root/your.key          # a file holding the XUP1.… key, or the key itself
+</code></pre>
+<p>The installer checks the key with the new build first, then writes it to <code>/etc/xtream/license.key</code> (<code>root:xtream</code>, mode <code>0640</code>) and sets <code>LICENSE_KEY_FILE</code> in <code>/etc/xtream/xtream.env</code>. If this build was made after the key's maintenance ended, the installer stops before writing anything; add <code>--ignore-license</code> to install anyway and run as the free tier. You can also paste the key later in Dashboard → Settings → License, or in the <code>/setup</code> wizard.</p>
+<ul>
+<li><strong>Check a key</strong> at any time, offline: <code>/opt/xtream/bin/dashboard license --check --key /etc/xtream/license.key</code>. The panel never contacts the project to activate a key or to keep running.</li>
+<li><strong>A key belongs to one server.</strong> Settings → License shows this machine's fingerprint (<code>XFP1.…</code>); <code>/opt/xtream/bin/dashboard license fingerprint</code> prints the same. Send it when you order. <strong>A new server needs a new key</strong>: send the new machine's fingerprint and you receive a key for it.</li>
+<li><strong>Renewal.</strong> The key carries an &quot;updates until&quot; date. Renew from the order page of the website; paste the new key in Settings → License (it replaces the old one) or overwrite <code>/etc/xtream/license.key</code> and restart <code>xtream-dashboard</code>.</li>
+</ul>
 <hr>
 <h2 id="3-scenario-b--edge-node-media-server-close-to-the-viewers">3. Scenario B — edge node (media server close to the viewers)</h2>
 <p>A node runs <code>serve</code> in node mode (VOD cache + live fan-out) and the <code>cluster</code> agent only. No PostgreSQL or Redis.</p>
@@ -423,9 +441,14 @@ sudo systemctl start xtream-cluster-agent
 <td>Install fail2ban with exactly two jails (<code>/etc/fail2ban/jail.d/xtream.local</code>): <code>sshd</code> (5 failures / 10 minutes) and <code>xtream-dashboard</code> (20 <code>401</code> answers from the dashboard in 10 minutes); 1-hour ban. A node gets the <code>sshd</code> jail only. <code>cmd/api</code> is never blocked</td>
 </tr>
 <tr>
-<td><code>--with-demo</code></td>
+<td><code>--license-key FILE|KEY</code></td>
+<td>none</td>
+<td><strong>Main server</strong>: licence key (an <code>XUP1.…</code> key or a file holding one); checked with the new build, then written to <code>/etc/xtream/license.key</code>. Without it the panel is the free tier (50 lines, 0 nodes); add a key later in Settings → License. A node refuses it</td>
+</tr>
+<tr>
+<td><code>--ignore-license</code></td>
 <td>off</td>
-<td>The seed also creates the sample catalogue and the public showcase accounts (<code>SEED_DEMO=1</code>). Not for a server open to the Internet</td>
+<td>Install although this build refuses the checked key (maintenance over, bad signature); the panel runs as the free tier</td>
 </tr>
 <tr>
 <td><code>--skip-seed</code></td>
@@ -504,6 +527,10 @@ sudo systemctl start xtream-cluster-agent
 <tr>
 <td><code>--seed</code></td>
 <td>Also run <code>seed</code> (schema migration + missing defaults; existing accounts are never changed). Default: binaries only</td>
+</tr>
+<tr>
+<td><code>--ignore-license</code></td>
+<td>Upgrade although there is no key, or the new build refuses it: the new build runs as the free tier. Never installs a modified package</td>
 </tr>
 <tr>
 <td><code>--no-tuning</code></td>
@@ -696,6 +723,13 @@ sudo ./upgrade.sh --rollback            # back to the newest backup
 sudo ./upgrade.sh --tag v1.2.0 -- --with-recording   # options after &quot;--&quot; go to install.sh
 </code></pre>
 <p>An edge node upgrades the same way: <code>upgrade.sh</code> detects the <code>node</code> role, no URL or secret has to be given again. Nodes can also be upgraded from the dashboard (Servers → Install Load Balancer → <strong>Upgrade</strong>).</p>
+<h3 id="updates-and-your-licence-key">Updates and your licence key</h3>
+<p>Updates are for installs with a valid licence key. On a main server <code>upgrade.sh</code> reads the key on the machine (Dashboard → Settings → License; or <code>LICENSE_KEY</code>; or <code>/etc/xtream/license.key</code>) and checks it offline against the new package before it touches anything. It stops, and changes nothing, when:</p>
+<ul>
+<li>the key does not cover the new release: its &quot;updates until&quot; date is before the day the release was made. Patch releases of the minor version you already run (for example v1.4.x on v1.4) are always accepted;</li>
+<li>there is no key at all.</li>
+</ul>
+<p>Nothing is sent to anyone: the download site is a static site, the project runs no licence server, and the panel's own update check sends only its version number. A panel without a valid key keeps running as the free tier (50 active lines, no cluster node); it just does not update by itself. To install a release anyway as the free tier, add <code>--ignore-license</code>; to update with full limits again, load a valid key and run <code>upgrade.sh</code> again. A package whose binaries were modified is never installed, and <code>--ignore-license</code> does not change that: download the package again from <a href="https://download.xtream-ui.pro">https://download.xtream-ui.pro</a>. Nodes hold no key and upgrade without this check.</p>
 <hr>
 <h2 id="8-removing-with-uninstallsh">8. Removing with <code>uninstall.sh</code></h2>
 <pre><code class="language-sh">sudo ./uninstall.sh                 # stop + remove the units, binaries, tuning, nginx site; /etc/xtream archived to /root/xtream-config-&lt;timestamp&gt;.tgz
