@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Download Xtream UI Pro</title>
-<meta name="description" content="Download Xtream UI Pro v1.3.45 for Ubuntu 22.04 / 24.04 and install it on your own server: packages, checksums and the full installation guide.">
+<meta name="description" content="Download Xtream UI Pro v1.4.48 for Ubuntu 22.04 / 24.04 and install it on your own server: packages, checksums and the full installation guide.">
 <link rel="canonical" href="https://download.xtream-ui.pro/">
 <meta name="color-scheme" content="light dark">
 <link rel="icon" type="image/svg+xml" href="logo.svg">
@@ -72,6 +72,13 @@ h2.sec{font-size:1.45rem;margin:0 0 6px;letter-spacing:-.01em}
 .guide li{margin:4px 0}
 footer{border-top:1px solid var(--line);padding:28px 0 40px;color:var(--muted);font-size:.9rem;margin-top:24px}
 footer .wrap{display:flex;flex-wrap:wrap;gap:8px 24px;justify-content:space-between}
+.linkbtn{font:inherit;color:var(--brand);background:none;border:0;padding:0;cursor:pointer;text-decoration:underline}
+.consent{position:fixed;left:16px;right:16px;bottom:16px;z-index:20;max-width:720px;margin:0 auto;background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:16px 18px;box-shadow:0 10px 30px rgba(0,0,0,.18);display:flex;flex-wrap:wrap;gap:12px 18px;align-items:center}
+.consent[hidden]{display:none}
+.consent p{margin:0;flex:1 1 320px;font-size:.92rem;color:var(--muted)}
+.consent b{display:block;color:var(--text);margin-bottom:2px}
+.consent .acts{display:flex;gap:8px}
+.consent .btn{cursor:pointer;font:inherit;font-weight:600;padding:8px 14px}
 </style>
 </head>
 <body>
@@ -89,7 +96,7 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:8px 24px;justify-content:space-betw
 
 <main id="top">
   <div class="wrap hero">
-    <span class="badge">v1.3.45 · 14 October 2026</span>
+    <span class="badge">v1.4.48 · 17 October 2026</span>
     <h1>Install Xtream UI Pro on your own server</h1>
     <p>One package per CPU holds every service, the installer and the upgrade, uninstall and reset scripts. A single command sets up PostgreSQL, Redis, ffmpeg and the systemd services; with <code>--with-nginx</code> and your domains it also puts nginx in front.</p>
     <ul class="req">
@@ -102,29 +109,29 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:8px 24px;justify-content:space-betw
 
   <section id="download">
     <div class="wrap">
-      <h2 class="sec">Download v1.3.45</h2>
+      <h2 class="sec">Download v1.4.48</h2>
       <p class="lead">Download directly on the server: uploading by hand often damages the file. <code>uname -m</code> tells you which package you need: <code>x86_64</code> → amd64, <code>aarch64</code> → arm64.</p>
       <div class="pkgs">
         <div class="pkg">
           <h3>Linux amd64</h3>
           <p class="for">Intel / AMD, uname -m: x86_64</p>
           <div class="row">
-            <a class="btn primary" href="https://github.com/xtreamui-pro/download/releases/download/v1.3.45/xtreampro-v1.3.45-linux-amd64.tar.gz">Download</a>
-            <small>xtreampro-v1.3.45-linux-amd64.tar.gz · 62.9 MB</small>
+            <a class="btn primary" href="https://github.com/xtreamui-pro/download/releases/download/v1.4.48/xtreampro-v1.4.48-linux-amd64.tar.gz" data-dl-file="xtreampro-v1.4.48-linux-amd64.tar.gz" data-dl-version="v1.4.48" data-dl-arch="amd64" data-dl-channel="stable">Download</a>
+            <small>xtreampro-v1.4.48-linux-amd64.tar.gz · 63.0 MB</small>
           </div>
-          <p class="sha">SHA-256 be078904ea232900baf39cada7d952cfc1809af8510695763fa582293ee3370f</p>
+          <p class="sha">SHA-256 1d091b8097a0144b4e21f3bd29e3344039200c1dc1db1c50b7ce4dd444d0d733</p>
         </div>
       </div>
       <p class="lead"><b>This release has an amd64 package only.</b> For an ARM server (<code>uname -m</code> = <code>aarch64</code>) pick an earlier release with an arm64 package from <a href="https://github.com/xtreamui-pro/download/releases">all releases</a>.</p>
 
       <h3>Quick install</h3>
-<pre><code>TAG=v1.3.45; ARCH=$(uname -m | sed 's/x86_64/amd64/;s/aarch64/arm64/')
-curl -fLO https://github.com/xtreamui-pro/download/releases/download/v1.3.45/xtreampro-$TAG-linux-$ARCH.tar.gz
-curl -fLO https://github.com/xtreamui-pro/download/releases/download/v1.3.45/SHA256SUMS
+<pre><code>TAG=v1.4.48; ARCH=$(uname -m | sed 's/x86_64/amd64/;s/aarch64/arm64/')
+curl -fLO https://github.com/xtreamui-pro/download/releases/download/v1.4.48/xtreampro-$TAG-linux-$ARCH.tar.gz
+curl -fLO https://github.com/xtreamui-pro/download/releases/download/v1.4.48/SHA256SUMS
 sha256sum -c SHA256SUMS --ignore-missing          # must print ": OK"
 mkdir -p xtream &amp;&amp; tar -xzf xtreampro-$TAG-linux-$ARCH.tar.gz -C xtream &amp;&amp; cd xtream
 sudo ./install.sh</code></pre>
-      <p class="lead">That is the simplest install, reached by IP. Domains with TLS, edge nodes, the recorder and every option are in the guide below; read <a href="#after-the-install-required">After the install (required)</a> in any case. Upgrading a running server: <code>sudo ./upgrade.sh --tag v1.3.45</code>. Older versions: <a href="https://github.com/xtreamui-pro/download/releases">all releases</a>. For tools: <a href="latest.json">latest.json</a>.</p>
+      <p class="lead">That is the simplest install, reached by IP. Domains with TLS, edge nodes, the recorder and every option are in the guide below; read <a href="#after-the-install-required">After the install (required)</a> in any case. Upgrading a running server: <code>sudo ./upgrade.sh --tag v1.4.48</code>. Older versions: <a href="https://github.com/xtreamui-pro/download/releases">all releases</a>. For tools: <a href="latest.json">latest.json</a>.</p>
     </div>
   </section>
 
@@ -841,9 +848,18 @@ sudo ./reset.sh --yes --no-backup
 <footer>
   <div class="wrap">
     <span>© Xtream UI Pro · proprietary software, <a href="https://github.com/xtreamui-pro/download/blob/main/LICENSE">license</a> · guide under CC BY 4.0 · <a href="https://github.com/xtreamui-pro/download">improve this guide on GitHub</a></span>
-    <span><a href="https://plugins.xtream-ui.pro">Connectors for billing systems and shops</a></span>
+    <span><a href="https://plugins.xtream-ui.pro">Connectors for billing systems and shops</a><span hidden> · <button type="button" class="linkbtn" data-consent-open>Cookie settings</button></span></span>
   </div>
 </footer>
+
+
+<section class="consent" id="consent" data-ga-id="G-4Z9VQ5L6V8" aria-labelledby="consentTitle" hidden>
+  <p><b id="consentTitle">Cookies on this website</b>With your permission we use Google Analytics to count visits and package downloads. Nothing is sent to Google until you accept, and no advertising cookies are used. <a href="https://xtream-ui.pro/privacy">Privacy policy</a></p>
+  <div class="acts">
+    <button type="button" class="btn" data-consent="denied">Decline</button>
+    <button type="button" class="btn primary" data-consent="granted">Accept</button>
+  </div>
+</section>
 
 <script>
 (function () {
@@ -870,6 +886,106 @@ sudo ./reset.sh --yes --no-backup
     });
   }, { rootMargin: '-80px 0px -70% 0px' });
   document.querySelectorAll('.guide h2[id]').forEach(function (h) { io.observe(h); });
+})();
+</script>
+<script>
+
+
+(function () {
+  'use strict';
+  var banner = document.getElementById('consent');
+  if (!banner) return;
+  var gaID = banner.getAttribute('data-ga-id');
+  var KEY = 'xc_consent';
+  var loaded = false;
+  var granted = false;
+
+  function readChoice() {
+    try { return window.localStorage.getItem(KEY); } catch (e) { return null; }
+  }
+  function saveChoice(v) {
+    try { window.localStorage.setItem(KEY, v); } catch (e) {   }
+  }
+
+  function loadAnalytics() {
+    granted = true;
+    window['ga-disable-' + gaID] = false;
+    if (loaded) {
+      window.gtag('consent', 'update', { analytics_storage: 'granted' });
+      return;
+    }
+    loaded = true;
+    window.dataLayer = window.dataLayer || [];
+    window.gtag = function () { window.dataLayer.push(arguments); };
+    window.gtag('consent', 'default', {
+      analytics_storage: 'granted',
+      ad_storage: 'denied',
+      ad_user_data: 'denied',
+      ad_personalization: 'denied'
+    });
+    window.gtag('js', new Date());
+    window.gtag('config', gaID);
+    var s = document.createElement('script');
+    s.async = true;
+    s.src = 'https://www.googletagmanager.com/gtag/js?id=' + encodeURIComponent(gaID);
+    document.head.appendChild(s);
+  }
+
+  function clearAnalyticsCookies() {
+    var parts = window.location.hostname.split('.');
+    document.cookie.split(';').forEach(function (c) {
+      var name = c.split('=')[0].trim();
+      if (name !== '_ga' && name.indexOf('_ga_') !== 0) return;
+      var expire = name + '=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/';
+      document.cookie = expire;
+      for (var i = 0; i < parts.length - 1; i++) {
+        document.cookie = expire + '; domain=.' + parts.slice(i).join('.');
+      }
+    });
+  }
+
+  function stopAnalytics() {
+    granted = false;
+    window['ga-disable-' + gaID] = true;
+    if (window.gtag) window.gtag('consent', 'update', { analytics_storage: 'denied' });
+    clearAnalyticsCookies();
+  }
+
+  banner.addEventListener('click', function (e) {
+    var btn = e.target.closest('[data-consent]');
+    if (!btn) return;
+    var choice = btn.getAttribute('data-consent') === 'granted' ? 'granted' : 'denied';
+    saveChoice(choice);
+    banner.hidden = true;
+    if (choice === 'granted') loadAnalytics();
+    else stopAnalytics();
+  });
+
+  document.querySelectorAll('[data-consent-open]').forEach(function (btn) {
+    var item = btn.closest('[hidden]');
+    if (item) item.hidden = false;
+    btn.addEventListener('click', function () { banner.hidden = false; });
+  });
+
+  
+  function track(e) {
+    if (e.type === 'auxclick' && e.button !== 1) return;
+    var a = e.target.closest && e.target.closest('a[data-dl-file]');
+    if (!a || !granted || typeof window.gtag !== 'function') return;
+    window.gtag('event', 'file_download', {
+      file_name: a.getAttribute('data-dl-file'),
+      version: a.getAttribute('data-dl-version'),
+      arch: a.getAttribute('data-dl-arch'),
+      channel: a.getAttribute('data-dl-channel'),
+      transport_type: 'beacon'
+    });
+  }
+  document.addEventListener('click', track);
+  document.addEventListener('auxclick', track);
+
+  var choice = readChoice();
+  if (choice === 'granted') loadAnalytics();
+  else if (choice !== 'denied' && navigator.globalPrivacyControl !== true) banner.hidden = false;
 })();
 </script>
 </body>
