@@ -241,14 +241,16 @@ The agent exits with code 3 and systemd does **not** restart it (`RestartPrevent
 
 | Option | Meaning |
 | --- | --- |
-| `--tag vX.Y.Z` | Download this GitHub release (the asset for `uname -m`) and `SHA256SUMS`; default repository `xtreamui-pro/download` (public, no login), change with `--repo owner/repo` or the env `XTREAM_REPO`; a private repository needs `gh auth login` |
-| `--file PKG` | Use a downloaded `.tar.gz` (verified when `SHA256SUMS` sits next to it) |
-| `--dir DIR` | Use an already extracted package folder (default: the folder `upgrade.sh` runs from) |
+| `--tag vX.Y.Z` | Download this GitHub release (the asset for `uname -m`), `SHA256SUMS` and `SHA256SUMS.sig`; default repository `xtreamui-pro/download` (public, no login), change with `--repo owner/repo` or the env `XTREAM_REPO`; a private repository needs `gh auth login` |
+| `--file PKG` | Use a downloaded `.tar.gz` (verified when `SHA256SUMS` sits next to it; a `SHA256SUMS.sig` next to that is checked too) |
+| `--dir DIR` | Use an already extracted package folder (default: the folder `upgrade.sh` runs from). Nothing is verified: the package's own script runs |
 | `--seed` | Also run `seed` (schema migration + missing defaults; existing accounts are never changed). Default: binaries only |
 | `--ignore-license` | Upgrade although there is no key, or the new build refuses it: the new build runs as the free tier. Never installs a modified package |
+| `--ignore-signature` | Go on when the signature of the release is missing or cannot be checked. Never overrides a signature that is present and wrong. Not implied by `--yes` or `--ignore-license` |
 | `--no-tuning` | Pass `--no-tuning` to `install.sh` |
 | `--rollback` | Restore the newest binaries backup from `/opt/xtream/backup` and restart. The database is **not** touched; the newest pre-upgrade dump and the `pg_restore` command are printed |
-| `--require-backup` | Abort when the pre-upgrade `pg_dump` fails or `pg_dump` is missing (default: warn and go on) |
+| `--no-backup` | Upgrade **without** the pre-upgrade database dump. By default the dump is required: when it cannot be taken (no `pg_dump`, a failed dump, too little free space) the upgrade stops before anything is installed. Take a snapshot at your database provider first. A node has no database and takes no dump |
+| `--require-backup` | Kept for compatibility: the dump is required by default |
 | `--yes`, `-y` | No confirmation prompt |
 | `--` | Everything after it is passed to `install.sh` (for example `--with-recording`) |
 
@@ -256,7 +258,7 @@ The agent exits with code 3 and systemd does **not** restart it (`RestartPrevent
 
 | Option | Meaning |
 | --- | --- |
-| (none) | Stop and remove the units, binaries, tuning files and the nginx site; `/etc/xtream` is archived to `/root/xtream-config-<timestamp>.tgz` and removed |
+| (none) | Stop and remove the units (and the metrics `metrics.conf` drop-ins of a main server; an override you made with `systemctl edit` stays), binaries, `/usr/local/sbin/xtream-upgrade`, tuning files and the nginx site; `/etc/xtream` is archived to `/root/xtream-config-<timestamp>.tgz` and removed |
 | `--purge-data` | Also delete `/var/lib/xtream` and `/var/cache/xtream` (media, recordings, GeoIP, node cache) and the `xtream` user |
 | `--drop-db` | Also drop the database `xtreamprodb` and the role `xtream` |
 | `--all` | `--purge-data --drop-db` |
@@ -284,13 +286,16 @@ The agent exits with code 3 and systemd does **not** restart it (`RestartPrevent
 | `/usr/local/bin/xtream-serve` | symlink to `serve`, for `xtream-serve sign "Film (2024)"` |
 | `/etc/xtream/xtream.env` | environment variables and secrets, mode `root:xtream 640` |
 | `/etc/xtream/serve.json` | `serve` configuration (main or node) |
+| `/etc/xtream/build-pubkey` | the publisher's build public key, root-owned, readable by everyone; `upgrade.sh` checks the signature of a release against it |
+| `/usr/local/sbin/xtream-upgrade` | main server: root-owned copy of `upgrade.sh`, the command you upgrade with (section 7) |
 | `/etc/xtream/cluster.json`, `node_runtime.json` | node: identity and runtime written by the agent |
 | `/var/lib/xtream/media/` | VOD library, `enigma2/` (screenshots), `archive/` (live catch-up) |
 | `/var/lib/xtream/geoip/` | `.mmdb` files |
-| `/var/lib/xtream/backups/` | database dumps (worker schedule and pre-upgrade dumps), mode 700 |
+| `/var/lib/xtream/backups/` | database dumps of the worker schedule, mode 700; the pre-upgrade dumps are in its root-only `preupgrade/` subfolder (the newest 3 are kept) |
 | `/var/lib/xtream/recording/` | recorder `config.json` and recordings |
 | `/var/cache/xtream/` | node VOD cache |
 | `/etc/systemd/system/xtream-*.service` | `xtream-dashboard`, `xtream-api`, `xtream-worker`, `xtream-serve`, `xtream-recording` (main); `xtream-serve`, `xtream-cluster-agent` (node) |
+| `/etc/systemd/system/xtream-<unit>.service.d/metrics.conf` | main server, fresh install only: the metrics listener (`/metrics`, `/healthz`, `/readyz`) of each service on `127.0.0.1` only: api 9101, dashboard 9102, worker 9103, serve 9104. A port that is already in use is skipped with a note. An upgrade never creates, changes or removes these files |
 | `/etc/nginx/sites-available/xtream.conf` | with `--with-nginx` |
 | `/etc/sysctl.d/90-xtream.conf`, `/etc/security/limits.d/90-xtream.conf` | kernel and file-descriptor tuning |
 | `/etc/postgresql/<ver>/main/conf.d/90-xtream.conf`, `/etc/redis/xtream.conf` | database and cache tuning sized from the machine's CPU and RAM |
@@ -319,18 +324,37 @@ Backups: the worker writes a verified `pg_dump` into `/var/lib/xtream/backups` e
 
 ## 7. Upgrading with `upgrade.sh`
 
-`upgrade.sh` is in every release package. It downloads (or takes) the new package, verifies the checksum, **backs up** the binaries and `/etc/xtream` into `/opt/xtream/backup/<timestamp>/` (the last 3 are kept) and takes a pre-upgrade `pg_dump`, refuses to go on when the env file holds sample or too short secrets, calls `install.sh` with the role read from `/etc/xtream/serve.json` (env, secrets and configuration are kept), then runs a **health check** (dashboard `/healthz`, api `/readyz`, serve `/healthz`). A failure at any step **rolls back** to the previous binaries.
+`upgrade.sh` is in every release package. It downloads (or takes) the new package, verifies the checksum and the signature, **backs up** the binaries and `/etc/xtream` into `/opt/xtream/backup/<timestamp>/` (the last 3 are kept) and takes a **required** pre-upgrade `pg_dump` (see below), refuses to go on when the env file holds sample or too short secrets, calls `install.sh` with the role read from `/etc/xtream/serve.json` (env, secrets and configuration are kept), then runs a **health check** (dashboard `/healthz`, api `/readyz`, serve `/healthz`). A failure at any step **rolls back** to the previous binaries.
+
+On a main server, upgrade with `xtream-upgrade`: the root-owned copy of `upgrade.sh` that `install.sh` keeps at `/usr/local/sbin/xtream-upgrade`, outside every package. A package's own `upgrade.sh` cannot vouch for itself, so the copy checks the release before any code of the new package runs. A server installed before this copy existed does not have it yet: run `sudo ./upgrade.sh` once from the extracted package, and `install.sh` creates it for the next upgrade. An edge node has no copy (see below).
 
 ```sh
-sudo ./upgrade.sh --tag v1.2.0          # download the package for this CPU from GitHub Releases + SHA256SUMS
-sudo ./upgrade.sh --file xtreampro-v1.2.0-linux-amd64.tar.gz   # a downloaded package (verified when SHA256SUMS is next to it)
-sudo ./upgrade.sh                       # from the extracted folder of the new package
-sudo ./upgrade.sh --tag v1.2.0 --seed   # with the schema migration (when the release notes say so)
-sudo ./upgrade.sh --rollback            # back to the newest backup
-sudo ./upgrade.sh --tag v1.2.0 -- --with-recording   # options after "--" go to install.sh
+sudo xtream-upgrade --tag v1.2.0          # download the package for this CPU from GitHub Releases + SHA256SUMS + SHA256SUMS.sig
+sudo xtream-upgrade --file xtreampro-v1.2.0-linux-amd64.tar.gz   # a downloaded package (checked when SHA256SUMS and SHA256SUMS.sig are next to it)
+sudo xtream-upgrade --tag v1.2.0 --seed   # with the schema migration (when the release notes say so)
+sudo xtream-upgrade --rollback            # back to the newest backup
+sudo xtream-upgrade --tag v1.2.0 -- --with-recording   # options after "--" go to install.sh
+sudo ./upgrade.sh                         # from the extracted folder of the new package: nothing is verified
 ```
 
-An edge node upgrades the same way: `upgrade.sh` detects the `node` role, no URL or secret has to be given again. Nodes can also be upgraded from the dashboard (Servers → Install Load Balancer → **Upgrade**).
+`sudo ./upgrade.sh` from an extracted package prints that the package's authenticity was not checked. Use it for the first upgrade that creates `xtream-upgrade`, or when you have checked the package yourself.
+
+An edge node has no `xtream-upgrade` and no key to check: run `sudo ./upgrade.sh` from the extracted node package. It detects the `node` role, and no URL or secret has to be given again. Nodes can also be upgraded from the dashboard (Servers → Install Load Balancer → **Upgrade**).
+
+### The signature of a release
+
+Every release carries `SHA256SUMS.sig`, a signature of its checksum file made with the publisher's build key. `install.sh` saves the matching public key in `/etc/xtream/build-pubkey`. With `--tag` or `--file`, the upgrade checks the signature against that key, with `openssl` 3.0 or later (Ubuntu 22.04 and 24.04 have it), **before** the package is extracted, on a private copy of the package. You see "SHA256SUMS is authentic" when it verifies.
+
+| What the upgrade finds | What it does |
+| --- | --- |
+| A signature that is present and wrong | Refuses, changes nothing, whatever the options. Download the package again from <https://download.xtream-ui.pro> and run `sudo xtream-upgrade --tag <version>` |
+| No `SHA256SUMS.sig`, a key this install does not know, or no `openssl` 3.0 | Warns and goes on in this release; a later release refuses unless you add `--ignore-signature` |
+| No key saved yet in `/etc/xtream/build-pubkey` (an older install) | Warns and goes on; `install.sh` saves the key of this release for the next upgrade |
+| A key file that others can write, or that is not a regular file owned by root ("pin not trusted") | Refuses, changes nothing. Find out who changed `/etc/xtream/build-pubkey`, or run `install.sh` again to write it |
+
+### The database dump before an upgrade
+
+On a main server the upgrade writes `xtream-<database>-preupgrade-<UTC time>.dump` into `preupgrade/` under the backup folder (`DB_BACKUP_DIR`, default `/var/lib/xtream/backups`), readable by root only, and checks that the database fits in the free space first. When the dump cannot be taken, the upgrade stops before anything is installed. To upgrade without it, take a snapshot at your database provider and add `--no-backup`.
 
 ### Updates and your licence key
 
@@ -346,7 +370,7 @@ Nothing is sent to anyone: the download site is a static site, the project runs 
 ## 8. Removing with `uninstall.sh`
 
 ```sh
-sudo ./uninstall.sh                 # stop + remove the units, binaries, tuning, nginx site; /etc/xtream archived to /root/xtream-config-<timestamp>.tgz
+sudo ./uninstall.sh                 # stop + remove the units, metrics drop-ins, binaries, xtream-upgrade, tuning, nginx site; /etc/xtream archived to /root/xtream-config-<timestamp>.tgz
 sudo ./uninstall.sh --purge-data    # also /var/lib/xtream, /var/cache/xtream and the xtream user
 sudo ./uninstall.sh --drop-db       # also the database xtreamprodb and the role xtream
 sudo ./uninstall.sh --all --yes     # everything, no questions
