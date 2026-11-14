@@ -417,3 +417,27 @@ After a reset **every dashboard password is gone**. The seed creates one `admin`
 | `GeoIP … unavailable` in the API log | no `.mmdb` file yet | normal; the worker downloads one, or copy the files into `/var/lib/xtream/geoip` |
 | The dashboard logs the proxy's address instead of the client's | nginx on another machine | put the proxy's address into `TRUSTED_PROXIES` in the env file |
 | `upgrade.sh` stops with `… holds sample, empty or too short secrets` | the env file still carries sample values from an old install | generate new values (section 9) and re-run |
+
+## 11. Reporting a bug
+
+Bugs are reported in public at <https://github.com/xtreamui-pro/download/issues>. You need a GitHub account.
+
+1. Look at the table in section 10 and search the [open and closed issues](https://github.com/xtreamui-pro/download/issues?q=is%3Aissue) first: the answer may already be there.
+2. Collect the facts on the server concerned:
+
+   ```sh
+   cat /opt/xtream/VERSION                                   # the version you run
+   lsb_release -ds; uname -m                                 # operating system and CPU
+   sudo journalctl -u xtream-dashboard -n 100 --no-pager     # the log of the service that fails
+   ```
+
+   Replace `xtream-dashboard` with `xtream-api`, `xtream-worker`, `xtream-serve`, `xtream-recording`, or `xtream-cluster-agent` on a node. `sudo journalctl -u 'xtream-*' --since -1h --no-pager` shows every service when you do not know which one.
+3. **Remove what must stay private** before you paste anything: passwords, the values of `/etc/xtream/xtream.env`, your licence key, line usernames and passwords, playlist links, and any IP address or domain you do not want published. Everything in an issue is public and stays in its history.
+4. Open [New issue](https://github.com/xtreamui-pro/download/issues/new/choose) and choose **Bug report**. The form asks for the version, the system, where the problem is, what happened, the exact steps and the output. One problem per issue.
+
+| You want to | Use |
+| --- | --- |
+| Report something that does not work | [New issue](https://github.com/xtreamui-pro/download/issues/new/choose) → **Bug report** |
+| Suggest a feature or a change | [New issue](https://github.com/xtreamui-pro/download/issues/new/choose) → **Feature request** |
+| Report a security problem, or ask about your own server, licence or order | the support portal, <https://support.xtream-ui.pro/portal>: never a public issue |
+| Fix a step of this guide | a pull request against `INSTALL.md` in the same repository |

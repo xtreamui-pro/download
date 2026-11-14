@@ -32,8 +32,15 @@ Then follow *After the install (required)* in [INSTALL.md](INSTALL.md).
 ## Improving the guide
 
 Found a step that is wrong or unclear? Open an issue or a pull request against
-`INSTALL.md` — see [CONTRIBUTING.md](CONTRIBUTING.md). Problems with the software itself
-can be reported as an issue here too.
+`INSTALL.md` — see [CONTRIBUTING.md](CONTRIBUTING.md).
+
+## Reporting a bug
+
+Problems with the software itself are reported here: [New issue](https://github.com/xtreamui-pro/download/issues/new/choose)
+→ **Bug report** (or **Feature request** for a suggestion). *Reporting a bug* in
+[INSTALL.md](INSTALL.md) says what to collect and what to remove before you post. Security
+problems and questions about your own server, licence or order go to the support portal,
+<https://support.xtream-ui.pro/portal>, never to a public issue.
 
 ## License
 
