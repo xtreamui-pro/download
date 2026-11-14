@@ -1,0 +1,101 @@
+name: Feature request
+description: Suggest something Xtream UI Pro should do, or do differently
+title: "[Feature]: "
+labels: ["enhancement"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thank you for the suggestion. One idea per issue, in English if you can.
+
+        **This page is public.** Do not paste passwords, secrets, licence keys, line
+        credentials, playlist links or customer data.
+
+  - type: checkboxes
+    id: checks
+    attributes:
+      label: Before you send
+      options:
+        - label: I searched the open and closed issues and did not find this suggestion
+          required: true
+        - label: This is not a fault in something that already exists (use the Bug report form for that)
+          required: true
+
+  - type: dropdown
+    id: area
+    attributes:
+      label: Which part of the product
+      multiple: true
+      options:
+        - Installation, upgrade, uninstall
+        - Dashboard (admin / reseller panel)
+        - Subscriber API (Xtream Player API, get.php, XMLTV, Stalker, Enigma2)
+        - Web player
+        - Playback (live, VOD, recording)
+        - Cluster nodes and proxies
+        - Background jobs (EPG, sync, backups, GeoIP)
+        - Admin / Reseller API and connectors
+        - Licence and updates
+        - Installation guide or download site
+        - Other
+    validations:
+      required: true
+
+  - type: textarea
+    id: problem
+    attributes:
+      label: The problem you want solved
+      description: What you are trying to do and what stops you or costs you time today. A concrete case helps more than a general wish.
+    validations:
+      required: true
+
+  - type: textarea
+    id: proposal
+    attributes:
+      label: What you propose
+      description: How it should behave from the operator's, reseller's or viewer's side. Where it would sit (page, setting, command, API call).
+    validations:
+      required: true
+
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: What you do today instead
+      description: A workaround, another tool, or how another panel handles it
+
+  - type: dropdown
+    id: who
+    attributes:
+      label: Who needs it
+      multiple: true
+      options:
+        - Panel administrator
+        - Reseller
+        - Subscriber / viewer
+        - Integrator (API, connector)
+    validations:
+      required: true
+
+  - type: dropdown
+    id: importance
+    attributes:
+      label: How much it matters to you
+      options:
+        - Nice to have
+        - Important, I work around it today
+        - Blocks me from using the product
+    validations:
+      required: true
+
+  - type: input
+    id: version
+    attributes:
+      label: Version you run
+      description: "`cat /opt/xtream/VERSION`, if you have an installation"
+      placeholder: v1.4.12
+
+  - type: textarea
+    id: extra
+    attributes:
+      label: Anything else
+      description: "Size of your installation (lines, nodes), the apps or boxes involved, sketches or screenshots (hide private data)"
