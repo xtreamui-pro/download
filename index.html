@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Download Xtream UI Pro</title>
-<meta name="description" content="Download Xtream UI Pro v1.5.61 for Ubuntu 22.04 / 24.04 and install it on your own server: packages, checksums and the full installation guide.">
+<meta name="description" content="Download Xtream UI Pro v1.6.66 for Ubuntu 22.04 / 24.04 and install it on your own server: packages, checksums and the full installation guide.">
 <link rel="canonical" href="https://download.xtream-ui.pro/">
 <meta name="color-scheme" content="light dark">
 <link rel="icon" type="image/svg+xml" href="logo.svg">
@@ -96,7 +96,7 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:8px 24px;justify-content:space-betw
 
 <main id="top">
   <div class="wrap hero">
-    <span class="badge">v1.5.61 · 20 October 2026</span>
+    <span class="badge">v1.6.66 · 14 November 2026</span>
     <h1>Install Xtream UI Pro on your own server</h1>
     <p>One package per CPU holds every service, the installer and the upgrade, uninstall and reset scripts. A single command sets up PostgreSQL, Redis, ffmpeg and the systemd services; with <code>--with-nginx</code> and your domains it also puts nginx in front.</p>
     <ul class="req">
@@ -109,29 +109,29 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:8px 24px;justify-content:space-betw
 
   <section id="download">
     <div class="wrap">
-      <h2 class="sec">Download v1.5.61</h2>
+      <h2 class="sec">Download v1.6.66</h2>
       <p class="lead">Download directly on the server: uploading by hand often damages the file. <code>uname -m</code> tells you which package you need: <code>x86_64</code> → amd64, <code>aarch64</code> → arm64.</p>
       <div class="pkgs">
         <div class="pkg">
           <h3>Linux amd64</h3>
           <p class="for">Intel / AMD, uname -m: x86_64</p>
           <div class="row">
-            <a class="btn primary" href="https://github.com/xtreamui-pro/download/releases/download/v1.5.61/xtreampro-v1.5.61-linux-amd64.tar.gz" data-dl-file="xtreampro-v1.5.61-linux-amd64.tar.gz" data-dl-version="v1.5.61" data-dl-arch="amd64" data-dl-channel="stable">Download</a>
-            <small>xtreampro-v1.5.61-linux-amd64.tar.gz · 63.3 MB</small>
+            <a class="btn primary" href="https://github.com/xtreamui-pro/download/releases/download/v1.6.66/xtreampro-v1.6.66-linux-amd64.tar.gz" data-dl-file="xtreampro-v1.6.66-linux-amd64.tar.gz" data-dl-version="v1.6.66" data-dl-arch="amd64" data-dl-channel="stable">Download</a>
+            <small>xtreampro-v1.6.66-linux-amd64.tar.gz · 70.1 MB</small>
           </div>
-          <p class="sha">SHA-256 4bf66c7510950d662cb170f637a39f9f0d1768f86568cf8d82f0012ff4775ae4</p>
+          <p class="sha">SHA-256 884568aa6036b0f0b8dbcd3dd400158c26d007bd047cc127996bb7a0d565ee56</p>
         </div>
       </div>
       <p class="lead"><b>This release has an amd64 package only.</b> For an ARM server (<code>uname -m</code> = <code>aarch64</code>) pick an earlier release with an arm64 package from <a href="https://github.com/xtreamui-pro/download/releases">all releases</a>.</p>
 
       <h3>Quick install</h3>
-<pre><code>TAG=v1.5.61; ARCH=$(uname -m | sed 's/x86_64/amd64/;s/aarch64/arm64/')
-curl -fLO https://github.com/xtreamui-pro/download/releases/download/v1.5.61/xtreampro-$TAG-linux-$ARCH.tar.gz
-curl -fLO https://github.com/xtreamui-pro/download/releases/download/v1.5.61/SHA256SUMS
+<pre><code>TAG=v1.6.66; ARCH=$(uname -m | sed 's/x86_64/amd64/;s/aarch64/arm64/')
+curl -fLO https://github.com/xtreamui-pro/download/releases/download/v1.6.66/xtreampro-$TAG-linux-$ARCH.tar.gz
+curl -fLO https://github.com/xtreamui-pro/download/releases/download/v1.6.66/SHA256SUMS
 sha256sum -c SHA256SUMS --ignore-missing          # must print ": OK"
 mkdir -p xtream &amp;&amp; tar -xzf xtreampro-$TAG-linux-$ARCH.tar.gz -C xtream &amp;&amp; cd xtream
 sudo ./install.sh</code></pre>
-      <p class="lead">That is the simplest install, reached by IP. Domains with TLS, edge nodes, the recorder and every option are in the guide below; read <a href="#after-the-install-required">After the install (required)</a> in any case. Upgrading a running server: <code>sudo ./upgrade.sh --tag v1.5.61</code>. Older versions: <a href="https://github.com/xtreamui-pro/download/releases">all releases</a>. For tools: <a href="latest.json">latest.json</a>.</p>
+      <p class="lead">That is the simplest install, reached by IP. Domains with TLS, edge nodes, the recorder and every option are in the guide below; read <a href="#after-the-install-required">After the install (required)</a> in any case. Upgrading a running server: <code>sudo xtream-upgrade --tag v1.6.66</code> (a server installed before v1.6 runs <code>sudo ./upgrade.sh</code> once from the extracted package). Older versions: <a href="https://github.com/xtreamui-pro/download/releases">all releases</a>. For tools: <a href="latest.json">latest.json</a>.</p>
     </div>
   </section>
 
@@ -151,6 +151,7 @@ sudo ./install.sh</code></pre>
             <li><a href="#8-removing-with-uninstallsh">8. Removing with uninstall.sh</a></li>
             <li><a href="#9-secrets-and-the-database-reset">9. Secrets and the database reset</a></li>
             <li><a href="#10-common-errors">10. Common errors</a></li>
+            <li><a href="#11-reporting-a-bug">11. Reporting a bug</a></li>
           </ul>
         </nav>
         <article class="guide">
@@ -521,15 +522,15 @@ sudo systemctl start xtream-cluster-agent
 <tbody>
 <tr>
 <td><code>--tag vX.Y.Z</code></td>
-<td>Download this GitHub release (the asset for <code>uname -m</code>) and <code>SHA256SUMS</code>; default repository <code>xtreamui-pro/download</code> (public, no login), change with <code>--repo owner/repo</code> or the env <code>XTREAM_REPO</code>; a private repository needs <code>gh auth login</code></td>
+<td>Download this GitHub release (the asset for <code>uname -m</code>), <code>SHA256SUMS</code> and <code>SHA256SUMS.sig</code>; default repository <code>xtreamui-pro/download</code> (public, no login), change with <code>--repo owner/repo</code> or the env <code>XTREAM_REPO</code>; a private repository needs <code>gh auth login</code></td>
 </tr>
 <tr>
 <td><code>--file PKG</code></td>
-<td>Use a downloaded <code>.tar.gz</code> (verified when <code>SHA256SUMS</code> sits next to it)</td>
+<td>Use a downloaded <code>.tar.gz</code> (verified when <code>SHA256SUMS</code> sits next to it; a <code>SHA256SUMS.sig</code> next to that is checked too)</td>
 </tr>
 <tr>
 <td><code>--dir DIR</code></td>
-<td>Use an already extracted package folder (default: the folder <code>upgrade.sh</code> runs from)</td>
+<td>Use an already extracted package folder (default: the folder <code>upgrade.sh</code> runs from). Nothing is verified: the package's own script runs</td>
 </tr>
 <tr>
 <td><code>--seed</code></td>
@@ -540,6 +541,10 @@ sudo systemctl start xtream-cluster-agent
 <td>Upgrade although there is no key, or the new build refuses it: the new build runs as the free tier. Never installs a modified package</td>
 </tr>
 <tr>
+<td><code>--ignore-signature</code></td>
+<td>Go on when the signature of the release is missing or cannot be checked. Never overrides a signature that is present and wrong. Not implied by <code>--yes</code> or <code>--ignore-license</code></td>
+</tr>
+<tr>
 <td><code>--no-tuning</code></td>
 <td>Pass <code>--no-tuning</code> to <code>install.sh</code></td>
 </tr>
@@ -548,8 +553,12 @@ sudo systemctl start xtream-cluster-agent
 <td>Restore the newest binaries backup from <code>/opt/xtream/backup</code> and restart. The database is <strong>not</strong> touched; the newest pre-upgrade dump and the <code>pg_restore</code> command are printed</td>
 </tr>
 <tr>
+<td><code>--no-backup</code></td>
+<td>Upgrade <strong>without</strong> the pre-upgrade database dump. By default the dump is required: when it cannot be taken (no <code>pg_dump</code>, a failed dump, too little free space) the upgrade stops before anything is installed. Take a snapshot at your database provider first. A node has no database and takes no dump</td>
+</tr>
+<tr>
 <td><code>--require-backup</code></td>
-<td>Abort when the pre-upgrade <code>pg_dump</code> fails or <code>pg_dump</code> is missing (default: warn and go on)</td>
+<td>Kept for compatibility: the dump is required by default</td>
 </tr>
 <tr>
 <td><code>--yes</code>, <code>-y</code></td>
@@ -572,7 +581,7 @@ sudo systemctl start xtream-cluster-agent
 <tbody>
 <tr>
 <td>(none)</td>
-<td>Stop and remove the units, binaries, tuning files and the nginx site; <code>/etc/xtream</code> is archived to <code>/root/xtream-config-&lt;timestamp&gt;.tgz</code> and removed</td>
+<td>Stop and remove the units (and the metrics <code>metrics.conf</code> drop-ins of a main server; an override you made with <code>systemctl edit</code> stays), binaries, <code>/usr/local/sbin/xtream-upgrade</code>, tuning files and the nginx site; <code>/etc/xtream</code> is archived to <code>/root/xtream-config-&lt;timestamp&gt;.tgz</code> and removed</td>
 </tr>
 <tr>
 <td><code>--purge-data</code></td>
@@ -658,6 +667,14 @@ sudo systemctl start xtream-cluster-agent
 <td><code>serve</code> configuration (main or node)</td>
 </tr>
 <tr>
+<td><code>/etc/xtream/build-pubkey</code></td>
+<td>the publisher's build public key, root-owned, readable by everyone; <code>upgrade.sh</code> checks the signature of a release against it</td>
+</tr>
+<tr>
+<td><code>/usr/local/sbin/xtream-upgrade</code></td>
+<td>main server: root-owned copy of <code>upgrade.sh</code>, the command you upgrade with (section 7)</td>
+</tr>
+<tr>
 <td><code>/etc/xtream/cluster.json</code>, <code>node_runtime.json</code></td>
 <td>node: identity and runtime written by the agent</td>
 </tr>
@@ -671,7 +688,7 @@ sudo systemctl start xtream-cluster-agent
 </tr>
 <tr>
 <td><code>/var/lib/xtream/backups/</code></td>
-<td>database dumps (worker schedule and pre-upgrade dumps), mode 700</td>
+<td>database dumps of the worker schedule, mode 700; the pre-upgrade dumps are in its root-only <code>preupgrade/</code> subfolder (the newest 3 are kept)</td>
 </tr>
 <tr>
 <td><code>/var/lib/xtream/recording/</code></td>
@@ -684,6 +701,10 @@ sudo systemctl start xtream-cluster-agent
 <tr>
 <td><code>/etc/systemd/system/xtream-*.service</code></td>
 <td><code>xtream-dashboard</code>, <code>xtream-api</code>, <code>xtream-worker</code>, <code>xtream-serve</code>, <code>xtream-recording</code> (main); <code>xtream-serve</code>, <code>xtream-cluster-agent</code> (node)</td>
+</tr>
+<tr>
+<td><code>/etc/systemd/system/xtream-&lt;unit&gt;.service.d/metrics.conf</code></td>
+<td>main server, fresh install only: the metrics listener (<code>/metrics</code>, <code>/healthz</code>, <code>/readyz</code>) of each service on <code>127.0.0.1</code> only: api 9101, dashboard 9102, worker 9103, serve 9104. A port that is already in use is skipped with a note. An upgrade never creates, changes or removes these files</td>
 </tr>
 <tr>
 <td><code>/etc/nginx/sites-available/xtream.conf</code></td>
@@ -721,15 +742,47 @@ xtream-serve sign &quot;Film (2024)&quot;                        # a signed /wat
 <p>Backups: the worker writes a verified <code>pg_dump</code> into <code>/var/lib/xtream/backups</code> every 24 hours (<code>DB_BACKUP_*</code> in the env file; <code>DB_BACKUP_ENCRYPTION_KEY</code> encrypts them, Settings → Backup copies them off-site to S3-compatible storage). By hand: <code>sudo -u postgres pg_dump -Fc xtreamprodb &gt; xtream-$(date +%F).dump</code>, plus a tar of <code>/var/lib/xtream/media</code> and <code>/etc/xtream</code>.</p>
 <hr>
 <h2 id="7-upgrading-with-upgradesh">7. Upgrading with <code>upgrade.sh</code></h2>
-<p><code>upgrade.sh</code> is in every release package. It downloads (or takes) the new package, verifies the checksum, <strong>backs up</strong> the binaries and <code>/etc/xtream</code> into <code>/opt/xtream/backup/&lt;timestamp&gt;/</code> (the last 3 are kept) and takes a pre-upgrade <code>pg_dump</code>, refuses to go on when the env file holds sample or too short secrets, calls <code>install.sh</code> with the role read from <code>/etc/xtream/serve.json</code> (env, secrets and configuration are kept), then runs a <strong>health check</strong> (dashboard <code>/healthz</code>, api <code>/readyz</code>, serve <code>/healthz</code>). A failure at any step <strong>rolls back</strong> to the previous binaries.</p>
-<pre><code class="language-sh">sudo ./upgrade.sh --tag v1.2.0          # download the package for this CPU from GitHub Releases + SHA256SUMS
-sudo ./upgrade.sh --file xtreampro-v1.2.0-linux-amd64.tar.gz   # a downloaded package (verified when SHA256SUMS is next to it)
-sudo ./upgrade.sh                       # from the extracted folder of the new package
-sudo ./upgrade.sh --tag v1.2.0 --seed   # with the schema migration (when the release notes say so)
-sudo ./upgrade.sh --rollback            # back to the newest backup
-sudo ./upgrade.sh --tag v1.2.0 -- --with-recording   # options after &quot;--&quot; go to install.sh
+<p><code>upgrade.sh</code> is in every release package. It downloads (or takes) the new package, verifies the checksum and the signature, <strong>backs up</strong> the binaries and <code>/etc/xtream</code> into <code>/opt/xtream/backup/&lt;timestamp&gt;/</code> (the last 3 are kept) and takes a <strong>required</strong> pre-upgrade <code>pg_dump</code> (see below), refuses to go on when the env file holds sample or too short secrets, calls <code>install.sh</code> with the role read from <code>/etc/xtream/serve.json</code> (env, secrets and configuration are kept), then runs a <strong>health check</strong> (dashboard <code>/healthz</code>, api <code>/readyz</code>, serve <code>/healthz</code>). A failure at any step <strong>rolls back</strong> to the previous binaries.</p>
+<p>On a main server, upgrade with <code>xtream-upgrade</code>: the root-owned copy of <code>upgrade.sh</code> that <code>install.sh</code> keeps at <code>/usr/local/sbin/xtream-upgrade</code>, outside every package. A package's own <code>upgrade.sh</code> cannot vouch for itself, so the copy checks the release before any code of the new package runs. A server installed before this copy existed does not have it yet: run <code>sudo ./upgrade.sh</code> once from the extracted package, and <code>install.sh</code> creates it for the next upgrade. An edge node has no copy (see below).</p>
+<pre><code class="language-sh">sudo xtream-upgrade --tag v1.2.0          # download the package for this CPU from GitHub Releases + SHA256SUMS + SHA256SUMS.sig
+sudo xtream-upgrade --file xtreampro-v1.2.0-linux-amd64.tar.gz   # a downloaded package (checked when SHA256SUMS and SHA256SUMS.sig are next to it)
+sudo xtream-upgrade --tag v1.2.0 --seed   # with the schema migration (when the release notes say so)
+sudo xtream-upgrade --rollback            # back to the newest backup
+sudo xtream-upgrade --tag v1.2.0 -- --with-recording   # options after &quot;--&quot; go to install.sh
+sudo ./upgrade.sh                         # from the extracted folder of the new package: nothing is verified
 </code></pre>
-<p>An edge node upgrades the same way: <code>upgrade.sh</code> detects the <code>node</code> role, no URL or secret has to be given again. Nodes can also be upgraded from the dashboard (Servers → Install Load Balancer → <strong>Upgrade</strong>).</p>
+<p><code>sudo ./upgrade.sh</code> from an extracted package prints that the package's authenticity was not checked. Use it for the first upgrade that creates <code>xtream-upgrade</code>, or when you have checked the package yourself.</p>
+<p>An edge node has no <code>xtream-upgrade</code> and no key to check: run <code>sudo ./upgrade.sh</code> from the extracted node package. It detects the <code>node</code> role, and no URL or secret has to be given again. Nodes can also be upgraded from the dashboard (Servers → Install Load Balancer → <strong>Upgrade</strong>).</p>
+<h3 id="the-signature-of-a-release">The signature of a release</h3>
+<p>Every release carries <code>SHA256SUMS.sig</code>, a signature of its checksum file made with the publisher's build key. <code>install.sh</code> saves the matching public key in <code>/etc/xtream/build-pubkey</code>. With <code>--tag</code> or <code>--file</code>, the upgrade checks the signature against that key, with <code>openssl</code> 3.0 or later (Ubuntu 22.04 and 24.04 have it), <strong>before</strong> the package is extracted, on a private copy of the package. You see &quot;SHA256SUMS is authentic&quot; when it verifies.</p>
+<table>
+<thead>
+<tr>
+<th>What the upgrade finds</th>
+<th>What it does</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A signature that is present and wrong</td>
+<td>Refuses, changes nothing, whatever the options. Download the package again from <a href="https://download.xtream-ui.pro">https://download.xtream-ui.pro</a> and run <code>sudo xtream-upgrade --tag &lt;version&gt;</code></td>
+</tr>
+<tr>
+<td>No <code>SHA256SUMS.sig</code>, a key this install does not know, or no <code>openssl</code> 3.0</td>
+<td>Warns and goes on in this release; a later release refuses unless you add <code>--ignore-signature</code></td>
+</tr>
+<tr>
+<td>No key saved yet in <code>/etc/xtream/build-pubkey</code> (an older install)</td>
+<td>Warns and goes on; <code>install.sh</code> saves the key of this release for the next upgrade</td>
+</tr>
+<tr>
+<td>A key file that others can write, or that is not a regular file owned by root (&quot;pin not trusted&quot;)</td>
+<td>Refuses, changes nothing. Find out who changed <code>/etc/xtream/build-pubkey</code>, or run <code>install.sh</code> again to write it</td>
+</tr>
+</tbody>
+</table>
+<h3 id="the-database-dump-before-an-upgrade">The database dump before an upgrade</h3>
+<p>On a main server the upgrade writes <code>xtream-&lt;database&gt;-preupgrade-&lt;UTC time&gt;.dump</code> into <code>preupgrade/</code> under the backup folder (<code>DB_BACKUP_DIR</code>, default <code>/var/lib/xtream/backups</code>), readable by root only, and checks that the database fits in the free space first. When the dump cannot be taken, the upgrade stops before anything is installed. To upgrade without it, take a snapshot at your database provider and add <code>--no-backup</code>.</p>
 <h3 id="updates-and-your-licence-key">Updates and your licence key</h3>
 <p>Updates are for installs with a valid licence key. On a main server <code>upgrade.sh</code> reads the key on the machine (Dashboard → Settings → License; or <code>LICENSE_KEY</code>; or <code>/etc/xtream/license.key</code>) and checks it offline against the new package before it touches anything. It stops, and changes nothing, when:</p>
 <ul>
@@ -739,7 +792,7 @@ sudo ./upgrade.sh --tag v1.2.0 -- --with-recording   # options after &quot;--&qu
 <p>Nothing is sent to anyone: the download site is a static site, the project runs no licence server, and the panel's own update check sends only its version number. A panel without a valid key keeps running as the free tier (50 active lines, no cluster node); it just does not update by itself. To install a release anyway as the free tier, add <code>--ignore-license</code>; to update with full limits again, load a valid key and run <code>upgrade.sh</code> again. A package whose binaries were modified is never installed, and <code>--ignore-license</code> does not change that: download the package again from <a href="https://download.xtream-ui.pro">https://download.xtream-ui.pro</a>. Nodes hold no key and upgrade without this check.</p>
 <hr>
 <h2 id="8-removing-with-uninstallsh">8. Removing with <code>uninstall.sh</code></h2>
-<pre><code class="language-sh">sudo ./uninstall.sh                 # stop + remove the units, binaries, tuning, nginx site; /etc/xtream archived to /root/xtream-config-&lt;timestamp&gt;.tgz
+<pre><code class="language-sh">sudo ./uninstall.sh                 # stop + remove the units, metrics drop-ins, binaries, xtream-upgrade, tuning, nginx site; /etc/xtream archived to /root/xtream-config-&lt;timestamp&gt;.tgz
 sudo ./uninstall.sh --purge-data    # also /var/lib/xtream, /var/cache/xtream and the xtream user
 sudo ./uninstall.sh --drop-db       # also the database xtreamprodb and the role xtream
 sudo ./uninstall.sh --all --yes     # everything, no questions
@@ -835,6 +888,53 @@ sudo ./reset.sh --yes --no-backup
 <td><code>upgrade.sh</code> stops with <code>… holds sample, empty or too short secrets</code></td>
 <td>the env file still carries sample values from an old install</td>
 <td>generate new values (section 9) and re-run</td>
+</tr>
+</tbody>
+</table>
+<h2 id="11-reporting-a-bug">11. Reporting a bug</h2>
+<p>Bugs are reported in public at <a href="https://github.com/xtreamui-pro/download/issues">https://github.com/xtreamui-pro/download/issues</a>. You need a GitHub account.</p>
+<ol>
+<li>
+<p>Look at the table in section 10 and search the <a href="https://github.com/xtreamui-pro/download/issues?q=is%3Aissue">open and closed issues</a> first: the answer may already be there.</p>
+</li>
+<li>
+<p>Collect the facts on the server concerned:</p>
+<pre><code class="language-sh">cat /opt/xtream/VERSION                                   # the version you run
+lsb_release -ds; uname -m                                 # operating system and CPU
+sudo journalctl -u xtream-dashboard -n 100 --no-pager     # the log of the service that fails
+</code></pre>
+<p>Replace <code>xtream-dashboard</code> with <code>xtream-api</code>, <code>xtream-worker</code>, <code>xtream-serve</code>, <code>xtream-recording</code>, or <code>xtream-cluster-agent</code> on a node. <code>sudo journalctl -u 'xtream-*' --since -1h --no-pager</code> shows every service when you do not know which one.</p>
+</li>
+<li>
+<p><strong>Remove what must stay private</strong> before you paste anything: passwords, the values of <code>/etc/xtream/xtream.env</code>, your licence key, line usernames and passwords, playlist links, and any IP address or domain you do not want published. Everything in an issue is public and stays in its history.</p>
+</li>
+<li>
+<p>Open <a href="https://github.com/xtreamui-pro/download/issues/new/choose">New issue</a> and choose <strong>Bug report</strong>. The form asks for the version, the system, where the problem is, what happened, the exact steps and the output. One problem per issue.</p>
+</li>
+</ol>
+<table>
+<thead>
+<tr>
+<th>You want to</th>
+<th>Use</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Report something that does not work</td>
+<td><a href="https://github.com/xtreamui-pro/download/issues/new/choose">New issue</a> → <strong>Bug report</strong></td>
+</tr>
+<tr>
+<td>Suggest a feature or a change</td>
+<td><a href="https://github.com/xtreamui-pro/download/issues/new/choose">New issue</a> → <strong>Feature request</strong></td>
+</tr>
+<tr>
+<td>Report a security problem, or ask about your own server, licence or order</td>
+<td>the support portal, <a href="https://support.xtream-ui.pro/portal">https://support.xtream-ui.pro/portal</a>: never a public issue</td>
+</tr>
+<tr>
+<td>Fix a step of this guide</td>
+<td>a pull request against <code>INSTALL.md</code> in the same repository</td>
 </tr>
 </tbody>
 </table>
