@@ -6,7 +6,8 @@ every release.
 
 ## Reporting a problem
 
-Open an issue with: the version (`cat /opt/xtream/VERSION`), the Ubuntu version
+Open an issue with the **Bug report** form
+(<https://github.com/xtreamui-pro/download/issues/new/choose>). It asks for: the version (`cat /opt/xtream/VERSION`), the Ubuntu version
 (`lsb_release -ds`), the command you ran, and its output. `sudo journalctl -u xtream-dashboard -n 100`
 (or `xtream-api`, `xtream-worker`, `xtream-serve`) usually shows the error. **Remove passwords,
 secrets from `/etc/xtream/xtream.env`, IP addresses you do not want public and customer data before

@@ -1,0 +1,138 @@
+name: Bug report
+description: Something in Xtream UI Pro does not work as the guide or the panel says it should
+title: "[Bug]: "
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thank you for the report. One problem per issue, in English if you can.
+
+        **This page is public.** Before you paste anything, remove passwords, the secrets of
+        `/etc/xtream/xtream.env`, licence keys, line usernames and passwords, playlist links,
+        and any IP address or domain you do not want published.
+
+  - type: checkboxes
+    id: checks
+    attributes:
+      label: Before you send
+      options:
+        - label: I searched the open and closed issues and did not find this problem
+          required: true
+        - label: I removed passwords, secrets, licence keys and customer data from everything below
+          required: true
+
+  - type: input
+    id: version
+    attributes:
+      label: Version
+      description: "`cat /opt/xtream/VERSION`, or the version at the foot of the dashboard sidebar"
+      placeholder: v1.4.12
+    validations:
+      required: true
+
+  - type: dropdown
+    id: os
+    attributes:
+      label: Operating system
+      description: "`lsb_release -ds`"
+      options:
+        - Ubuntu 24.04
+        - Ubuntu 22.04
+        - Debian
+        - Other (say which in the description)
+    validations:
+      required: true
+
+  - type: dropdown
+    id: arch
+    attributes:
+      label: CPU
+      description: "`uname -m`"
+      options:
+        - x86_64 (amd64)
+        - aarch64 (arm64)
+    validations:
+      required: true
+
+  - type: dropdown
+    id: area
+    attributes:
+      label: Where is the problem
+      multiple: true
+      options:
+        - Installation (install.sh)
+        - Upgrade (xtream-upgrade / upgrade.sh)
+        - Uninstall
+        - Dashboard (admin / reseller panel)
+        - Subscriber API (Xtream Player API, get.php, XMLTV, Stalker, Enigma2)
+        - Web player
+        - Playback (live, VOD, recording)
+        - Cluster nodes and proxies
+        - Background jobs (EPG, sync, backups, GeoIP)
+        - Licence key
+        - Installation guide or download site
+        - Other
+    validations:
+      required: true
+
+  - type: dropdown
+    id: licence
+    attributes:
+      label: Licence
+      description: Do not paste the key itself
+      options:
+        - Free tier (no key)
+        - Licence key loaded
+    validations:
+      required: true
+
+  - type: textarea
+    id: what
+    attributes:
+      label: What happened
+      description: What you saw, and what you expected instead
+    validations:
+      required: true
+
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps to reproduce
+      description: The exact commands you ran or the pages and buttons you used, in order
+      placeholder: |
+        1. sudo ./install.sh --domain …
+        2. Dashboard → Servers → Add Server
+        3. …
+    validations:
+      required: true
+
+  - type: textarea
+    id: logs
+    attributes:
+      label: Output and logs
+      description: |
+        The output of the command that failed, and the log of the service concerned:
+        `sudo journalctl -u xtream-dashboard -n 100 --no-pager`
+        (or `xtream-api`, `xtream-worker`, `xtream-serve`, `xtream-web`, `xtream-recording`,
+        `xtream-cluster-agent` on a node). Secrets removed.
+      render: text
+    validations:
+      required: true
+
+  - type: dropdown
+    id: frequency
+    attributes:
+      label: How often
+      options:
+        - Every time
+        - Sometimes
+        - Once
+    validations:
+      required: true
+
+  - type: textarea
+    id: extra
+    attributes:
+      label: Anything else
+      description: "Screenshots (hide private data), reverse proxy or Cloudflare in front, number of lines and nodes, the app or box model for a playback problem, the version it last worked on"

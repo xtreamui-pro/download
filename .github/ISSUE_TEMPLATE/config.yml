@@ -1,0 +1,8 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Installation guide
+    url: https://download.xtream-ui.pro
+    about: Installation, upgrade and troubleshooting steps. Check here first.
+  - name: Support portal (private)
+    url: https://support.xtream-ui.pro/portal
+    about: Questions about your own server, your licence or an order, and anything you cannot post in public, including security problems.
